@@ -1,14 +1,24 @@
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { useNavigate } from '@tanstack/react-location';
+import classNames from 'classnames';
+import { useContext } from 'react';
+import AuthContext from 'src/app/contexts/auth.context';
 
 /* eslint-disable-next-line */
 export interface NotesDialProps {}
 
 export function NotesDial(props: NotesDialProps) {
   const navigate = useNavigate();
+  const { isAuthenticated } = useContext(AuthContext);
 
   return (
-    <div data-dial-init className="group fixed right-6 bottom-6">
+    <div
+      data-dial-init
+      className={classNames(
+        isAuthenticated ? '' : 'hidden',
+        'group fixed right-6 bottom-6'
+      )}
+    >
       <div
         id="speed-dial-menu-square"
         className="mb-4 flex hidden flex-col items-center space-y-2"

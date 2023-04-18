@@ -45,7 +45,7 @@ export function AppView(props: AppViewProps) {
         )}
       >
         <NotesView />
-        {isAuthenticated && <NotesDial />}
+        <NotesDial />
       </div>
 
       <MatchRoute to={'signin'}>
