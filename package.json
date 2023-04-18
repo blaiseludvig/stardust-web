@@ -9,9 +9,21 @@
   },
   "private": true,
   "dependencies": {
+    "@heroicons/react": "^2.0.16",
+    "@react-hookz/web": "^23.0.0",
     "@tanstack/react-location": "^3.7.4",
+    "@types/react-transition-group": "^4.4.5",
+    "classnames": "^2.3.2",
+    "flowbite": "^1.6.4",
+    "flowbite-react": "^0.4.2",
+    "ky": "^0.33.3",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.43.9",
+    "react-masonry-css": "^1.0.16",
+    "react-query": "^3.39.3",
+    "react-textarea-autosize": "^8.4.1",
+    "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
     "@nrwl/cypress": "15.8.6",
@@ -49,6 +61,7 @@
     "sass": "^1.55.0",
     "tailwindcss": "3.2.7",
     "typescript": "~4.9.5",
+    "typescript-plugin-css-modules": "^5.0.0",
     "vite": "^4.0.1",
     "vite-plugin-eslint": "^1.8.1",
     "vite-tsconfig-paths": "^4.0.2",
