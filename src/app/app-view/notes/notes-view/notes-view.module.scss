@@ -1,0 +1,19 @@
+$gutter-size: 1rem;
+
+// for masonry grid
+.notes-masonry-grid {
+  display: flex;
+  margin-left: -$gutter-size;
+  width: auto;
+}
+
+// for masonry grid columns
+.notes-masonry-grid-column {
+  padding-left: $gutter-size;
+  background-clip: padding-box;
+
+  // for masonry grid item
+  > div {
+    margin-bottom: 0.875rem;
+  }
+}
