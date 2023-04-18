@@ -4,6 +4,7 @@ const { join } = require('path');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
+    'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
     join(
       __dirname,
       '{src,pages,components}/**/*!(*.stories|*.spec).{ts,tsx,html}'
@@ -13,6 +14,6 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require('flowbite/plugin')],
   darkMode: 'class',
 };
