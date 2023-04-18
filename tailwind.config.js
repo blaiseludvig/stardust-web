@@ -12,7 +12,11 @@ module.exports = {
     ...createGlobPatternsForDependencies(__dirname),
   ],
   theme: {
-    extend: {},
+    extend: {
+      spacing: {
+        7.5: '1.875rem',
+      },
+    },
   },
   plugins: [require('flowbite/plugin')],
   darkMode: 'class',
