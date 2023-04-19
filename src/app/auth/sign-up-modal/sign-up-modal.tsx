@@ -2,6 +2,7 @@ import { XMarkIcon } from '@heroicons/react/24/solid';
 import { useNavigate } from '@tanstack/react-location';
 import { createPortal } from 'react-dom';
 import { useForm } from 'react-hook-form';
+import { useSignIn } from 'src/app/hooks/auth/useSignIn';
 import { useSignUp } from 'src/app/hooks/auth/useSignUp';
 
 import styles from './sign-up-modal.module.scss';
@@ -12,6 +13,7 @@ export interface SignUpModalProps {}
 export function SignUpModal(props: SignUpModalProps) {
   const navigate = useNavigate();
   const signUp = useSignUp();
+  const signIn = useSignIn();
 
   const { register, handleSubmit } = useForm<{
     email: string;
@@ -44,7 +46,7 @@ export function SignUpModal(props: SignUpModalProps) {
                 Sign up
               </h3>
               <form
-                onSubmit={handleSubmit((data) => {
+                onSubmit={handleSubmit(async (data) => {
                   if (!data.email) {
                     return;
                   }
@@ -53,8 +55,11 @@ export function SignUpModal(props: SignUpModalProps) {
                     return;
                   }
 
-                  signUp(data.email, data.password);
+                  const res = await signUp(data.email, data.password);
 
+                  if (res.ok) {
+                    signIn(data.email, data.password);
+                  }
                   navigate({ to: '/app' });
                 })}
                 className="space-y-6"
