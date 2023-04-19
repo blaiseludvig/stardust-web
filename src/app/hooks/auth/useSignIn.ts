@@ -16,12 +16,14 @@ export function useSignIn() {
 
     if (!response.ok) {
       alert('login fail');
-      return;
+      return response;
     }
 
     const json: { access_token: string } = await response.json();
 
     setJwt(json.access_token);
     setAuthenticated(true);
+
+    return response;
   };
 }

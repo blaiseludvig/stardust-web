@@ -13,11 +13,13 @@ export function useSignUp() {
 
     if (!response.ok) {
       alert('signup fail');
-      return;
+      return response;
     }
 
     const json: { access_token: string } = await response.json();
 
     setJwt(json.access_token);
+
+    return response;
   };
 }
