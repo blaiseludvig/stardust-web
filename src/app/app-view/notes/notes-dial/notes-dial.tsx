@@ -2,13 +2,16 @@ import { PlusIcon } from '@heroicons/react/24/outline';
 import { useNavigate } from '@tanstack/react-location';
 import classNames from 'classnames';
 import { useContext } from 'react';
+import { TbCross } from 'react-icons/tb';
 import AuthContext from 'src/app/contexts/auth.context';
+import { useTalkToGod } from 'src/app/hooks/notes/useTalkToGod';
 
 /* eslint-disable-next-line */
 export interface NotesDialProps {}
 
 export function NotesDial(props: NotesDialProps) {
   const navigate = useNavigate();
+  const { mutate: talkToGod } = useTalkToGod();
   const { isAuthenticated } = useContext(AuthContext);
 
   return (
@@ -107,29 +110,20 @@ export function NotesDial(props: NotesDialProps) {
           <div className="tooltip-arrow" data-popper-arrow></div>
         </div>
         <button
+          onMouseDown={() => talkToGod()}
           type="button"
           data-tooltip-target="tooltip-copy"
           data-tooltip-placement="left"
           className="flex h-[52px] w-[52px] items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-500 shadow-sm hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-400"
         >
-          <svg
-            aria-hidden="true"
-            className="h-6 w-6"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M7 9a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2H9a2 2 0 01-2-2V9z"></path>
-            <path d="M5 3a2 2 0 00-2 2v6a2 2 0 002 2V5h8a2 2 0 00-2-2H5z"></path>
-          </svg>
-          <span className="sr-only">Copy</span>
+          <TbCross className="h-6 w-6 text-gray-500" />
         </button>
         <div
           id="tooltip-copy"
           role="tooltip"
-          className="tooltip invisible absolute z-10 inline-block w-auto rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
+          className="tooltip invisible absolute z-10 inline-block w-max rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700"
         >
-          Copy
+          Talk to god
           <div className="tooltip-arrow" data-popper-arrow></div>
         </div>
       </div>
