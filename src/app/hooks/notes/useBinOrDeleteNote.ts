@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from 'react-query';
 
 import { useApiKy } from '../useApiKyi';
+import { useBinNote } from './useBinNote';
 import { useDeleteNote } from './useDeleteNote';
 import { NoteData } from './useGetNotes';
-import { useBinNote } from './useBinNote';
 
 export function useBinOrDeleteNote() {
   const myky = useApiKy();
@@ -13,7 +13,7 @@ export function useBinOrDeleteNote() {
   const { mutate: binNote } = useBinNote();
 
   return (noteData: NoteData) => {
-    if (noteData.isDeleted) {
+    if (noteData.isBinned) {
       deleteNote(noteData.noteId);
     } else {
       binNote(noteData.noteId);

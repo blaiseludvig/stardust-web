@@ -24,8 +24,8 @@ export function NoteCard(props: NoteCardProps) {
     content,
     isArchived,
     dateArchived,
-    isDeleted,
-    dateDeleted,
+    isBinned,
+    dateBinned,
     dateCreated,
     dateUpdated,
   } = props.data;
@@ -53,7 +53,7 @@ export function NoteCard(props: NoteCardProps) {
       </p>
 
       <NoteActionButtons ref={buttonsRef} noteId={noteId}>
-        {isDeleted ? (
+        {isBinned ? (
           <>
             <NoteActionButton
               icon={<XMarkIcon className="mx-auto h-6 w-6 text-red-500" />}

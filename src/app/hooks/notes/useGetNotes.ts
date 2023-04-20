@@ -11,8 +11,8 @@ export interface NoteData {
   content: string;
   isArchived: boolean;
   dateArchived: boolean;
-  isDeleted: boolean;
-  dateDeleted: Date;
+  isBinned: boolean;
+  dateBinned: Date;
   dateCreated: Date;
   dateUpdated: Date;
 }
