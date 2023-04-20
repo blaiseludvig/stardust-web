@@ -9,7 +9,6 @@ import NoteActionButtons from '../note-action-buttons/note-action-buttons';
 
 export interface NoteCardProps {
   data: NoteData;
-  key: string;
 }
 
 export function NoteCard(props: NoteCardProps) {
