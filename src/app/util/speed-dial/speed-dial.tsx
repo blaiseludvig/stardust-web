@@ -14,6 +14,7 @@ export interface SpeedDialProps {
   tooltipPlacement: placementTypes;
   triggerButton: ReactNode;
   triggerType: 'hover' | 'click';
+  expanded?: boolean;
   pinnable?: boolean;
   pinned?: boolean;
   className?: string;
@@ -22,7 +23,7 @@ export interface SpeedDialProps {
 // TODO: Fix horizontal aligned variation
 function SpeedDial(props: React.PropsWithChildren<SpeedDialProps>) {
   const [isPinned, togglePinned] = useToggle(props.pinned);
-  const [isExpanded, toggleExpanded] = useToggle(props.pinned);
+  const [isExpanded, toggleExpanded] = useToggle(props.expanded);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
