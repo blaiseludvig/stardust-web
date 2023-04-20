@@ -19,8 +19,9 @@ export function NoteCard(props: NoteCardProps) {
     props.data;
 
   const buttonsRef = useRef<HTMLDivElement | null>(null);
-  const binOrDelete = useBinOrDeleteNote();
-  const { mutate: unbin } = useUnbinNote();
+
+  const binOrDeleteNote = useBinOrDeleteNote();
+  const { mutate: unbinNote } = useUnbinNote();
 
   return (
     <div
@@ -41,21 +42,21 @@ export function NoteCard(props: NoteCardProps) {
           <>
             <NoteActionButton
               icon={<XMarkIcon className="mx-auto h-6 w-6 text-red-500" />}
-              action={() => binOrDelete(props.data)}
+              action={() => binOrDeleteNote(props.data)}
               tooltipText="Delete"
             />
             <NoteActionButton
               icon={
                 <ArrowUpTrayIcon className="mx-auto h-6 w-6 text-green-500" />
               }
-              action={() => unbin(noteId)}
+              action={() => unbinNote(noteId)}
               tooltipText="Unbin"
             />
           </>
         ) : (
           <NoteActionButton
             icon={<TrashIcon className="mx-auto h-6 w-6 text-gray-500" />}
-            action={() => binOrDelete(props.data)}
+            action={() => binOrDeleteNote(props.data)}
             tooltipText="Bin"
           />
         )}
