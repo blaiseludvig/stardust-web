@@ -8,6 +8,7 @@ import { useContext, useRef } from 'react';
 import { SignInModal } from '../auth/sign-in-modal/sign-in-modal';
 import SignUpModal from '../auth/sign-up-modal/sign-up-modal';
 import AuthContext from '../contexts/auth.context';
+import SpeedDial from '../util/speed-dial/speed-dial';
 import styles from './app-view.module.scss';
 import Navbar from './navbar/navbar';
 import NewNoteModal from './new-note-modal/new-note-modal';
