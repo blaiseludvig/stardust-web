@@ -5,6 +5,7 @@ import { XMarkIcon } from '@heroicons/react/24/solid';
 import { useRef } from 'react';
 import { useBinOrDeleteNote } from 'src/app/hooks/notes/useBinOrDeleteNote';
 import { NoteData } from 'src/app/hooks/notes/useGetNotes';
+import { useUnbinNote } from 'src/app/hooks/notes/useUnbinNote';
 
 import NoteActionButton from '../note-action-buttons/note-action-button';
 import NoteActionButtons from '../note-action-buttons/note-action-buttons';
@@ -19,6 +20,7 @@ export function NoteCard(props: NoteCardProps) {
 
   const buttonsRef = useRef<HTMLDivElement | null>(null);
   const binOrDelete = useBinOrDeleteNote();
+  const { mutate: unbin } = useUnbinNote();
 
   return (
     <div
@@ -36,11 +38,20 @@ export function NoteCard(props: NoteCardProps) {
 
       <NoteActionButtons ref={buttonsRef} noteId={noteId}>
         {isDeleted ? (
-          <NoteActionButton
-            icon={<XMarkIcon className="mx-auto h-6 w-6 text-red-500" />}
-            action={() => binOrDelete(props.data)}
-            tooltipText="Delete"
-          />
+          <>
+            <NoteActionButton
+              icon={<XMarkIcon className="mx-auto h-6 w-6 text-red-500" />}
+              action={() => binOrDelete(props.data)}
+              tooltipText="Delete"
+            />
+            <NoteActionButton
+              icon={
+                <ArrowUpTrayIcon className="mx-auto h-6 w-6 text-green-500" />
+              }
+              action={() => unbin(noteId)}
+              tooltipText="Unbin"
+            />
+          </>
         ) : (
           <NoteActionButton
             icon={<TrashIcon className="mx-auto h-6 w-6 text-gray-500" />}
