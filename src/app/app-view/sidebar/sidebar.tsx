@@ -170,13 +170,13 @@ export const Sidebar = forwardRef<
             </a>
           </li>
           <li>
-            <a
-              href="/"
-              className="flex items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+            <div
+              onMouseDown={() => navigate({ to: 'archive' })}
+              className="flex w-full cursor-pointer items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
             >
               <ArchiveBoxArrowDownIcon className="h-6 w-6 text-gray-500" />
-              <span className="ml-3 flex-1 whitespace-nowrap">Inbox</span>
-            </a>
+              <span className="ml-3 flex-1 whitespace-nowrap">Archive</span>
+            </div>
           </li>
 
           <li>

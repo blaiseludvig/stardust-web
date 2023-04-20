@@ -3,8 +3,10 @@ import { ArchiveBoxArrowDownIcon } from '@heroicons/react/24/outline';
 import { EllipsisVerticalIcon } from '@heroicons/react/24/outline';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import { useRef } from 'react';
+import { useArchiveNote } from 'src/app/hooks/notes/useArchiveNote';
 import { useBinOrDeleteNote } from 'src/app/hooks/notes/useBinOrDeleteNote';
 import { NoteData } from 'src/app/hooks/notes/useGetNotes';
+import { useUnarchiveNote } from 'src/app/hooks/notes/useUnarchiveNote';
 import { useUnbinNote } from 'src/app/hooks/notes/useUnbinNote';
 
 import NoteActionButton from '../note-action-buttons/note-action-button';
@@ -15,10 +17,23 @@ export interface NoteCardProps {
 }
 
 export function NoteCard(props: NoteCardProps) {
-  const { noteId, title, type, content, isDeleted, dateCreated, dateUpdated } =
-    props.data;
+  const {
+    noteId,
+    title,
+    type,
+    content,
+    isArchived,
+    dateArchived,
+    isDeleted,
+    dateDeleted,
+    dateCreated,
+    dateUpdated,
+  } = props.data;
 
   const buttonsRef = useRef<HTMLDivElement | null>(null);
+
+  const { mutate: archiveNote } = useArchiveNote();
+  const { mutate: unarchiveNote } = useUnarchiveNote();
 
   const binOrDeleteNote = useBinOrDeleteNote();
   const { mutate: unbinNote } = useUnbinNote();
@@ -61,11 +76,23 @@ export function NoteCard(props: NoteCardProps) {
           />
         )}
 
-        <NoteActionButton
-          icon={
-            <ArchiveBoxArrowDownIcon className="mx-auto h-6 w-6 text-gray-500" />
-          }
-        />
+        {isArchived ? (
+          <NoteActionButton
+            icon={
+              <ArrowUpTrayIcon className="mx-auto h-6 w-6 text-green-500" />
+            }
+            action={() => unarchiveNote(noteId)}
+            tooltipText="Unarchive"
+          />
+        ) : (
+          <NoteActionButton
+            icon={
+              <ArchiveBoxArrowDownIcon className="mx-auto h-6 w-6 text-gray-500" />
+            }
+            action={() => archiveNote(noteId)}
+            tooltipText="Archive"
+          />
+        )}
 
         <NoteActionButton
           icon={

@@ -5,6 +5,7 @@ import { useGetNotes } from 'src/app/hooks/notes/useGetNotes';
 import Spinner from 'src/app/util/spinner';
 
 import NoteCard from '../note-card/note-card';
+import EmptyArchive from './empty-archive';
 import EmptyBin from './empty-bin';
 import styles from './notes-view.module.scss';
 import Unauthenticated from './unathenticated';
@@ -57,9 +58,35 @@ export function NotesView(props: NotesViewProps) {
     );
   }
 
+  if (matchRoute({ to: '/app/archive', fuzzy: true })) {
+    if (
+      data?.filter((noteData) => {
+        return noteData.isArchived === true;
+      }).length === 0
+    ) {
+      return <EmptyArchive />;
+    }
+
+    return (
+      <Masonry
+        breakpointCols={3}
+        className={styles['notes-masonry-grid']}
+        columnClassName={styles['notes-masonry-grid-column']}
+      >
+        {data
+          ?.filter((noteData) => {
+            return noteData.isArchived === true;
+          })
+          .map((noteData) => (
+            <NoteCard data={noteData} key={noteData.noteId} />
+          ))}
+      </Masonry>
+    );
+  }
+
   if (
     data?.filter((noteData) => {
-      return noteData.isDeleted === false;
+      return noteData.isDeleted === false && noteData.isArchived === false;
     }).length === 0
   ) {
     return <ZeroNotes />;
@@ -73,7 +100,7 @@ export function NotesView(props: NotesViewProps) {
     >
       {data
         ?.filter((noteData) => {
-          return noteData.isDeleted === false;
+          return noteData.isDeleted === false && noteData.isArchived === false;
         })
         .map((noteData) => (
           <NoteCard data={noteData} key={noteData.noteId} />
