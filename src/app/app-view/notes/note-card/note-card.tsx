@@ -1,10 +1,12 @@
-import { TrashIcon } from '@heroicons/react/24/outline';
+import { ArrowUpTrayIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { ArchiveBoxArrowDownIcon } from '@heroicons/react/24/outline';
 import { EllipsisVerticalIcon } from '@heroicons/react/24/outline';
+import { XMarkIcon } from '@heroicons/react/24/solid';
 import { useRef } from 'react';
 import { useBinOrDeleteNote } from 'src/app/hooks/notes/useBinOrDeleteNote';
 import { NoteData } from 'src/app/hooks/notes/useGetNotes';
 
+import NoteActionButton from '../note-action-buttons/note-action-button';
 import NoteActionButtons from '../note-action-buttons/note-action-buttons';
 
 export interface NoteCardProps {
@@ -34,18 +36,30 @@ export function NoteCard(props: NoteCardProps) {
 
       <NoteActionButtons ref={buttonsRef} noteId={noteId}>
         {isDeleted ? (
-          <TrashIcon
-            className="mx-auto h-6 w-6 text-red-500"
-            onClickCapture={(e) => binOrDelete(props.data)}
+          <NoteActionButton
+            icon={<XMarkIcon className="mx-auto h-6 w-6 text-red-500" />}
+            action={() => binOrDelete(props.data)}
+            tooltipText="Delete"
           />
         ) : (
-          <TrashIcon
-            className="mx-auto h-6 w-6 text-gray-500"
-            onClickCapture={(e) => binOrDelete(props.data)}
+          <NoteActionButton
+            icon={<TrashIcon className="mx-auto h-6 w-6 text-gray-500" />}
+            action={() => binOrDelete(props.data)}
+            tooltipText="Bin"
           />
         )}
-        <ArchiveBoxArrowDownIcon className="mx-auto h-6 w-6 text-gray-500" />
-        <EllipsisVerticalIcon className="mx-auto h-6 w-6 text-gray-500" />
+
+        <NoteActionButton
+          icon={
+            <ArchiveBoxArrowDownIcon className="mx-auto h-6 w-6 text-gray-500" />
+          }
+        />
+
+        <NoteActionButton
+          icon={
+            <EllipsisVerticalIcon className="mx-auto h-6 w-6 text-gray-500" />
+          }
+        />
       </NoteActionButtons>
     </div>
   );
