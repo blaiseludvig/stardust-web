@@ -11,7 +11,7 @@ import AuthContext from '../contexts/auth.context';
 import SpeedDial from '../util/speed-dial/speed-dial';
 import styles from './app-view.module.scss';
 import Navbar from './navbar/navbar';
-import NewNoteModal from './new-note-modal/new-note-modal';
+import NewNoteModal from './notes/new-note-modal/new-note-modal';
 import NotesDial from './notes/notes-dial/notes-dial';
 import NotesView from './notes/notes-view/notes-view';
 import Sidebar, { SidebarHandle } from './sidebar/sidebar';
