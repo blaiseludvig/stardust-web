@@ -9,7 +9,10 @@ export interface NoteData {
   title: string;
   type: string;
   content: string;
+  isArchived: boolean;
+  dateArchived: boolean;
   isDeleted: boolean;
+  dateDeleted: Date;
   dateCreated: Date;
   dateUpdated: Date;
 }
