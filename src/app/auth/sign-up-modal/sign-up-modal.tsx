@@ -27,14 +27,17 @@ export function SignUpModal(props: SignUpModalProps) {
         // className="absolute top-0 left-0 right-0 z-[110] h-[calc(100%-1rem)] w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0 md:h-full"
         // className="absolute top-0 left-0 right-0 z-[110] flex h-[calc(100%-1rem)] w-full items-center justify-center overflow-y-auto overflow-x-hidden p-4 md:inset-0 md:h-full"
         onMouseDown={(event) => {
-          if (event.target === event.currentTarget) navigate({ to: '/app' });
+          if (event.target === event.currentTarget)
+            navigate({ search: (old) => ({ ...old, modal: undefined }) });
         }}
         className="absolute top-0 left-0 right-0 z-[110] flex h-[calc(100%-1rem)] w-full items-center justify-center overflow-y-auto overflow-x-hidden p-4 md:inset-0 md:h-full"
       >
         <div className="relative w-full max-w-md">
           <div className="relative rounded-lg bg-white shadow dark:bg-gray-700">
             <button
-              onMouseDown={() => navigate({ to: '/app' })}
+              onMouseDown={() =>
+                navigate({ search: (old) => ({ ...old, modal: undefined }) })
+              }
               type="button"
               className="absolute top-3 right-2.5 ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
             >
@@ -60,7 +63,7 @@ export function SignUpModal(props: SignUpModalProps) {
                   if (res.ok) {
                     signIn(data.email, data.password);
                   }
-                  navigate({ to: '/app' });
+                  navigate({ search: (old) => ({ ...old, modal: undefined }) });
                 })}
                 className="space-y-6"
                 action="#"

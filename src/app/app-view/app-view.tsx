@@ -1,5 +1,5 @@
 import { useMountEffect } from '@react-hookz/web';
-import { MatchRoute } from '@tanstack/react-location';
+import { MatchRoute, useSearch } from '@tanstack/react-location';
 import classNames from 'classnames';
 import 'flowbite';
 import { initFlowbite } from 'flowbite';
@@ -8,6 +8,7 @@ import { useContext, useRef } from 'react';
 import { SignInModal } from '../auth/sign-in-modal/sign-in-modal';
 import SignUpModal from '../auth/sign-up-modal/sign-up-modal';
 import AuthContext from '../contexts/auth.context';
+import { LocationGenerics } from '../routes';
 import SpeedDial from '../util/speed-dial/speed-dial';
 import styles from './app-view.module.scss';
 import Navbar from './navbar/navbar';
@@ -20,6 +21,8 @@ import Sidebar, { SidebarHandle } from './sidebar/sidebar';
 export interface AppViewProps {}
 
 export function AppView(props: AppViewProps) {
+  const search = useSearch<LocationGenerics>();
+
   const noteContainerRef = useRef<HTMLDivElement>(null);
   const sidebarHandle = useRef<SidebarHandle>(null);
   const { isAuthenticated } = useContext(AuthContext);
@@ -49,13 +52,9 @@ export function AppView(props: AppViewProps) {
         <NotesDial />
       </div>
 
-      <MatchRoute to={'signin'}>
-        <SignInModal />
-      </MatchRoute>
+      {search.modal === 'signin' && <SignInModal />}
 
-      <MatchRoute to={'signup'}>
-        <SignUpModal />
-      </MatchRoute>
+      {search.modal === 'signup' && <SignUpModal />}
 
       <MatchRoute to={'new'}>
         <NewNoteModal />

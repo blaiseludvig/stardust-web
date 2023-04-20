@@ -40,7 +40,7 @@ export function NavbarDropdown(props: NavbarDropdownProps) {
               role="menuitem"
               onMouseDown={() => {
                 dropdownFrameHandle.current?.hide();
-                navigate({ to: 'signin' });
+                navigate({ search: () => ({ modal: 'signin' }) });
               }}
             >
               Sign in

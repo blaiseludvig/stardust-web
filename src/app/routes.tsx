@@ -1,4 +1,4 @@
-import { Route } from '@tanstack/react-location';
+import { MakeGenerics, Route } from '@tanstack/react-location';
 
 import AppView from './app-view/app-view';
 import FrontPage from './front-page/front-page';
@@ -17,3 +17,7 @@ export const routes: Route[] = [
     element: <NotFoundPage />,
   },
 ];
+
+export type LocationGenerics = MakeGenerics<{
+  Search: { modal: 'signup' | 'signin' };
+}>;
