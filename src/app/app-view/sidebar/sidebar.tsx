@@ -9,7 +9,7 @@ import {
   Square3Stack3DIcon,
 } from '@heroicons/react/24/solid';
 import { Squares2X2Icon } from '@heroicons/react/24/solid';
-import { Link, useNavigate } from '@tanstack/react-location';
+import { useNavigate } from '@tanstack/react-location';
 import classNames from 'classnames';
 import React, { forwardRef, useImperativeHandle, useRef } from 'react';
 import Collapsible, {
@@ -116,32 +116,6 @@ export const Sidebar = forwardRef<
             <div className="overflow-hidden">
               <Collapsible
                 ref={collapsibleHandle}
-                // onExpand={() => {
-                //   console.log('onexpand');
-                //   dropdownIcon.current?.classList.toggle('-rotate-90');
-                //   requestAnimationFrame(() => {
-                //     const messageChannel = new MessageChannel();
-                //     messageChannel.port1.onmessage = () => {
-                //       collapsibleHandle.current?.containerRef.current?.classList.remove(
-                //         'max-h-0'
-                //       );
-                //       collapsibleHandle.current?.containerRef.current?.classList.add(
-                //         'max-h-screen'
-                //       );
-                //     };
-                //     messageChannel.port2.postMessage(undefined);
-                //   });
-                // }}
-                // onCollapse={() => {
-                //   console.log('oncollapse');
-                //   dropdownIcon.current?.classList.toggle('-rotate-90');
-                //   collapsibleHandle.current?.containerRef.current?.classList.remove(
-                //     'max-h-screen'
-                //   );
-                //   collapsibleHandle.current?.containerRef.current?.classList.add(
-                //     'max-h-0'
-                //   );
-                // }}
                 className="max-h-0 overflow-hidden transition-[max-height] duration-[300ms] ease-in-out"
               >
                 <ul className="space-y-2 py-2">
@@ -204,19 +178,6 @@ export const Sidebar = forwardRef<
               <span className="ml-3 flex-1 whitespace-nowrap">Inbox</span>
             </a>
           </li>
-
-          {/* <li>
-            <a
-              href="/"
-              className="flex items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-            >
-              <ArchiveBoxArrowDownIcon className="h-6 w-6 text-gray-500" />
-              <span className="ml-3 flex-1 whitespace-nowrap">Inbox</span>
-              <span className="ml-3 inline-flex h-3 w-3 items-center justify-center rounded-full bg-blue-100 p-3 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300">
-                3
-              </span>
-            </a>
-          </li> */}
 
           <li>
             <div
