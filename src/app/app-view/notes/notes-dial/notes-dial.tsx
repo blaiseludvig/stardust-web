@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import { TbCross } from 'react-icons/tb';
 import AuthContext from 'src/app/contexts/auth.context';
 import { useTalkToGod } from 'src/app/hooks/notes/useTalkToGod';
+import { LocationGenerics } from 'src/app/routes';
 import SpeedDial from 'src/app/util/speed-dial/speed-dial';
 import Tooltip from 'src/app/util/tooltip/tooltip';
 
@@ -12,7 +13,7 @@ import Tooltip from 'src/app/util/tooltip/tooltip';
 export interface NotesDialProps {}
 
 export function NotesDial(props: NotesDialProps) {
-  const navigate = useNavigate();
+  const navigate = useNavigate<LocationGenerics>();
   const { mutate: talkToGod } = useTalkToGod();
   const { isAuthenticated } = useContext(AuthContext);
 
@@ -29,7 +30,9 @@ export function NotesDial(props: NotesDialProps) {
       triggerButton={
         <>
           <button
-            onMouseDown={() => navigate({ to: '/app/new' })}
+            onMouseDown={() =>
+              navigate({ search: (old) => ({ ...old, modal: 'new-note' }) })
+            }
             type="button"
             className="group flex h-14 w-14 items-center justify-center rounded-full bg-blue-700 text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
