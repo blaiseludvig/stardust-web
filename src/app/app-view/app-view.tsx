@@ -52,13 +52,11 @@ export function AppView(props: AppViewProps) {
         <NotesDial />
       </div>
 
-      {search.modal === 'signin' && <SignInModal />}
+      <SignInModal hidden={search.modal !== 'signin'} />
 
-      {search.modal === 'signup' && <SignUpModal />}
+      <SignUpModal hidden={search.modal !== 'signup'} />
 
-      <MatchRoute to={'new'}>
-        <NewNoteModal />
-      </MatchRoute>
+      <NewNoteModal hidden={search.modal !== 'new-note'} />
     </div>
   );
 }
