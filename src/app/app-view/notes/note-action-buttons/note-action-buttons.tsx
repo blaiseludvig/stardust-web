@@ -1,24 +1,22 @@
-import { PropsWithChildren, forwardRef } from 'react';
+import classNames from 'classnames';
+import { PropsWithChildren } from 'react';
 
 export interface NoteActionButtonsProps {
-  noteId: string;
+  hidden: boolean;
 }
 
-const NoteActionButtons = forwardRef(
-  (
-    props: PropsWithChildren<NoteActionButtonsProps>,
-    containerRef: React.ForwardedRef<HTMLDivElement | null>
-  ) => {
-    return (
-      <div
-        ref={containerRef}
-        className="absolute bottom-1 right-2 inline-flex hidden shadow-sm"
-        role="group"
-      >
-        {props.children}
-      </div>
-    );
-  }
-);
+function NoteActionButtons(props: PropsWithChildren<NoteActionButtonsProps>) {
+  return (
+    <div
+      className={classNames(
+        props.hidden && 'hidden',
+        'absolute bottom-1 right-2 inline-flex shadow-sm'
+      )}
+      role="group"
+    >
+      {props.children}
+    </div>
+  );
+}
 
 export default NoteActionButtons;

@@ -2,6 +2,7 @@ import { ArrowUpTrayIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { ArchiveBoxArrowDownIcon } from '@heroicons/react/24/outline';
 import { EllipsisVerticalIcon } from '@heroicons/react/24/outline';
 import { XMarkIcon } from '@heroicons/react/24/solid';
+import { useToggle } from '@react-hookz/web';
 import { useRef } from 'react';
 import { useArchiveNote } from 'src/app/hooks/notes/useArchiveNote';
 import { useBinOrDeleteNote } from 'src/app/hooks/notes/useBinOrDeleteNote';
@@ -30,7 +31,7 @@ export function NoteCard(props: NoteCardProps) {
     dateUpdated,
   } = props.data;
 
-  const buttonsRef = useRef<HTMLDivElement | null>(null);
+  const [showActionButtons, toggleShowActionButtons] = useToggle(false);
 
   const { mutate: archiveNote } = useArchiveNote();
   const { mutate: unarchiveNote } = useUnarchiveNote();
@@ -41,8 +42,8 @@ export function NoteCard(props: NoteCardProps) {
   return (
     <div
       className="relative block break-words rounded-lg border border-gray-200 bg-white p-6 pb-16 shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-      onMouseOver={() => buttonsRef?.current?.classList.remove('hidden')}
-      onMouseOut={() => buttonsRef?.current?.classList.add('hidden')}
+      onMouseOver={() => toggleShowActionButtons(true)}
+      onMouseOut={() => toggleShowActionButtons(false)}
     >
       <p className="mb-2 cursor-default text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
         {title}
@@ -52,7 +53,7 @@ export function NoteCard(props: NoteCardProps) {
         {content}
       </p>
 
-      <NoteActionButtons ref={buttonsRef} noteId={noteId}>
+      <NoteActionButtons hidden={!showActionButtons}>
         {isBinned ? (
           <>
             <NoteActionButton
