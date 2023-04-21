@@ -1,10 +1,13 @@
 import { MakeGenerics, Route } from '@tanstack/react-location';
 
 import AppView from './app-view/app-view';
+import AllNotes from './app-view/notes/note-views/all-notes/all-notes';
+import ArchivedNotes from './app-view/notes/note-views/archived-notes/archived-notes';
+import BinnedNotes from './app-view/notes/note-views/binned-notes/binned-notes';
 import FrontPage from './front-page/front-page';
 import NotFoundPage from './not-found-page/not-found-page';
 
-export const routes: Route[] = [
+export const routes: Route<LocationGenerics>[] = [
   {
     path: '/',
     element: <FrontPage />,
@@ -12,6 +15,11 @@ export const routes: Route[] = [
   {
     path: '/app',
     element: <AppView />,
+    children: [
+      { path: '/', element: <AllNotes /> },
+      { path: 'bin', element: <BinnedNotes /> },
+      { path: 'archive', element: <ArchivedNotes /> },
+    ],
   },
   {
     element: <NotFoundPage />,

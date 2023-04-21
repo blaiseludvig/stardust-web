@@ -1,5 +1,11 @@
 import { useMountEffect } from '@react-hookz/web';
-import { MatchRoute, useSearch } from '@tanstack/react-location';
+import {
+  MatchRoute,
+  Outlet,
+  useMatch,
+  useNavigate,
+  useSearch,
+} from '@tanstack/react-location';
 import classNames from 'classnames';
 import 'flowbite';
 import { initFlowbite } from 'flowbite';
@@ -14,7 +20,6 @@ import styles from './app-view.module.scss';
 import Navbar from './navbar/navbar';
 import NewNoteModal from './notes/new-note-modal/new-note-modal';
 import NotesDial from './notes/notes-dial/notes-dial';
-import NotesView from './notes/notes-view/notes-view';
 import Sidebar, { SidebarHandle } from './sidebar/sidebar';
 
 /* eslint-disable-next-line */
@@ -22,6 +27,7 @@ export interface AppViewProps {}
 
 export function AppView(props: AppViewProps) {
   const search = useSearch<LocationGenerics>();
+  const navigate = useNavigate<LocationGenerics>();
 
   const noteContainerRef = useRef<HTMLDivElement>(null);
   const sidebarHandle = useRef<SidebarHandle>(null);
@@ -48,7 +54,7 @@ export function AppView(props: AppViewProps) {
           'mt-14 h-[calc(100%-3.5rem)] w-full overflow-y-scroll bg-slate-600 px-4 pt-4'
         )}
       >
-        <NotesView />
+        <Outlet />
         <NotesDial />
       </div>
 

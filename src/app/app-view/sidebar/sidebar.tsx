@@ -74,7 +74,7 @@ export const Sidebar = forwardRef<
         <ul className="space-y-2">
           <li>
             <div
-              onMouseDown={() => navigate({ to: '/app' })}
+              onMouseDown={() => navigate({ to: '.' })}
               className="flex cursor-pointer items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
             >
               <CubeIcon className="h-6 w-6 text-gray-500" />

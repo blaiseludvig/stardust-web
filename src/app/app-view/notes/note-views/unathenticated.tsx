@@ -1,4 +1,4 @@
-import { Link, useNavigate } from '@tanstack/react-location';
+import { useNavigate } from '@tanstack/react-location';
 import { LocationGenerics } from 'src/app/routes';
 
 export function Unauthenticated() {

@@ -12,7 +12,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import styles from './app.module.scss';
 import AuthContext from './contexts/auth.context';
 import { useIsSignedIn } from './hooks/auth/useIsSignedIn';
-import { routes } from './routes';
+import { LocationGenerics, routes } from './routes';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,7 +23,7 @@ const queryClient = new QueryClient({
 });
 
 const history = createBrowserHistory();
-const location = new ReactLocation({ history });
+const location = new ReactLocation<LocationGenerics>({ history });
 
 export function App() {
   const isSignedIn = useIsSignedIn();
