@@ -31,7 +31,7 @@ function ModalFrame(props: React.PropsWithChildren<ModalFrameProps>) {
   return createPortal(
     <div
       className={classNames(
-        props.hidden && 'hidden',
+        props.hidden && 'translate-y-full',
         'fixed inset-0 z-[100] bg-gray-900 bg-opacity-50 dark:bg-opacity-80'
       )}
     >
