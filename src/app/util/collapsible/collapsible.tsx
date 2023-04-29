@@ -7,8 +7,6 @@ import {
   useRef,
 } from 'react';
 
-import styles from './collapsible.module.scss';
-
 export type CollapsibleHandle = {
   isCollapsed: () => boolean;
   isExpanded: () => boolean;
@@ -35,7 +33,6 @@ export const Collapsible = forwardRef<
   React.PropsWithChildren<CollapsibleProps>
 >((props: PropsWithChildren<CollapsibleProps>, ref) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const isCollapsed = useRef<boolean>(props.collapsed ? true : false);
 
   const handle: CollapsibleHandle = {
     isCollapsed: () => {

@@ -1,5 +1,4 @@
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { useNavigate } from '@tanstack/react-location';
 import { useForm } from 'react-hook-form';
 import ReactTextareaAutosize from 'react-textarea-autosize';
 import { useCreateNote } from 'src/app/hooks/notes/useCreateNote';

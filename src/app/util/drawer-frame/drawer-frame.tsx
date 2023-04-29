@@ -1,6 +1,3 @@
-import { XMarkIcon } from '@heroicons/react/24/solid';
-import { useFirstMountState } from '@react-hookz/web';
-import classNames from 'classnames';
 import { DrawerInterface, DrawerOptions } from 'flowbite';
 import { Drawer as FlowbiteDrawer } from 'flowbite';
 import {
@@ -9,8 +6,6 @@ import {
   useLayoutEffect,
   useRef,
 } from 'react';
-
-import styles from './drawer-frame.module.scss';
 
 export type DrawerFrameHandle = {
   show: () => void;
@@ -46,7 +41,6 @@ export const DrawerFrame = forwardRef<
     } satisfies DrawerFrameHandle;
   });
 
-  const isFirstMount = useFirstMountState();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const flowbiteDrawerHandle = useRef<DrawerInterface | null>(null);
 

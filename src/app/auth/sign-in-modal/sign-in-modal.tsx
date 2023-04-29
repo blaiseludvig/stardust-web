@@ -1,16 +1,13 @@
 import { XMarkIcon } from '@heroicons/react/24/solid';
-import { useNavigate } from '@tanstack/react-location';
 import { useForm } from 'react-hook-form';
 import { useSignIn } from 'src/app/hooks/auth/useSignIn';
 import { useCloseModal } from 'src/app/hooks/useCloseModal';
-import { LocationGenerics } from 'src/app/routes';
 import ModalFrame, {
   ModalFrameProps,
 } from 'src/app/util/modal-frame/modal-frame';
 
 export function SignInModal(props: ModalFrameProps) {
   const closeModal = useCloseModal();
-  const navigate = useNavigate<LocationGenerics>();
   const signIn = useSignIn();
 
   const { register, handleSubmit } = useForm<{

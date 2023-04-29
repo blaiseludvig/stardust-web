@@ -10,7 +10,6 @@ import { useBinOrDeleteNote } from 'src/app/hooks/notes/useBinOrDeleteNote';
 import { NoteData } from 'src/app/hooks/notes/useGetNotes';
 import { useUnarchiveNote } from 'src/app/hooks/notes/useUnarchiveNote';
 import { useUnbinNote } from 'src/app/hooks/notes/useUnbinNote';
-import { useUpdateNote } from 'src/app/hooks/notes/useUpdateNote';
 
 import NoteActionButton from './note-action-button';
 import NoteActionButtonFrame, {

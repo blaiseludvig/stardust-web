@@ -10,8 +10,6 @@ import {
   useRef,
 } from 'react';
 
-import styles from './dropdown-frame.module.scss';
-
 export type DropdownFrameHandle = {
   show: () => void;
   hide: () => void;

@@ -1,20 +1,11 @@
-import { ArrowUpTrayIcon, TrashIcon } from '@heroicons/react/24/outline';
-import { ArchiveBoxArrowDownIcon } from '@heroicons/react/24/outline';
-import { EllipsisVerticalIcon } from '@heroicons/react/24/outline';
-import { XMarkIcon } from '@heroicons/react/24/solid';
 import { useToggle } from '@react-hookz/web';
 import { useNavigate } from '@tanstack/react-location';
 import { useRef } from 'react';
 import ReactTextareaAutosize from 'react-textarea-autosize';
-import { useArchiveNote } from 'src/app/hooks/notes/useArchiveNote';
-import { useBinOrDeleteNote } from 'src/app/hooks/notes/useBinOrDeleteNote';
 import { NoteData } from 'src/app/hooks/notes/useGetNotes';
-import { useUnarchiveNote } from 'src/app/hooks/notes/useUnarchiveNote';
-import { useUnbinNote } from 'src/app/hooks/notes/useUnbinNote';
 import { useEditModalCursor } from 'src/app/hooks/useEditModalCursor';
 import { LocationGenerics } from 'src/app/routes';
 
-import NoteActionButton from '../note-action-buttons/note-action-button';
 import NoteActionButtons from '../note-action-buttons/note-action-buttons';
 
 export interface NoteCardProps {
@@ -22,6 +13,7 @@ export interface NoteCardProps {
 }
 
 export function NoteCard(props: NoteCardProps) {
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   const {
     noteId,
     title,
@@ -34,15 +26,10 @@ export function NoteCard(props: NoteCardProps) {
     dateCreated,
     dateUpdated,
   } = props.data;
+  /* eslint-enable @typescript-eslint/no-unused-vars */
 
   const [showActionButtons, toggleShowActionButtons] = useToggle(false);
   const navigate = useNavigate<LocationGenerics>();
-
-  const { mutate: archiveNote } = useArchiveNote();
-  const { mutate: unarchiveNote } = useUnarchiveNote();
-
-  const binOrDeleteNote = useBinOrDeleteNote();
-  const { mutate: unbinNote } = useUnbinNote();
 
   const editModalCursor = useEditModalCursor();
   const titleRef = useRef<HTMLTextAreaElement>(null);

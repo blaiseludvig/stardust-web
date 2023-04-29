@@ -1,10 +1,8 @@
 import { useFirstMountState } from '@react-hookz/web';
-import { useNavigate } from '@tanstack/react-location';
 import classNames from 'classnames';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useCloseModal } from 'src/app/hooks/useCloseModal';
-import { LocationGenerics } from 'src/app/routes';
 
 export interface ModalFrameProps {
   hidden: boolean;
@@ -16,7 +14,6 @@ export interface ModalFrameProps {
 function ModalFrame(props: React.PropsWithChildren<ModalFrameProps>) {
   const { hidden } = props;
 
-  const navigate = useNavigate<LocationGenerics>();
   const closeModal = useCloseModal();
 
   const isFirstMount = useFirstMountState();

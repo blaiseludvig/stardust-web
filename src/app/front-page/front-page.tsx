@@ -1,7 +1,5 @@
 import { Link } from '@tanstack/react-location';
 
-import styles from './front-page.module.scss';
-
 /* eslint-disable-next-line */
 export interface FrontPageProps {}
 

@@ -1,21 +1,13 @@
 import { useMountEffect } from '@react-hookz/web';
-import {
-  MatchRoute,
-  Outlet,
-  useMatch,
-  useNavigate,
-  useSearch,
-} from '@tanstack/react-location';
+import { Outlet, useNavigate, useSearch } from '@tanstack/react-location';
 import classNames from 'classnames';
 import 'flowbite';
 import { initFlowbite } from 'flowbite';
-import { useContext, useRef } from 'react';
+import { useRef } from 'react';
 
 import { SignInModal } from '../auth/sign-in-modal/sign-in-modal';
 import SignUpModal from '../auth/sign-up-modal/sign-up-modal';
-import AuthContext from '../contexts/auth.context';
 import { LocationGenerics } from '../routes';
-import SpeedDial from '../util/speed-dial/speed-dial';
 import styles from './app-view.module.scss';
 import Navbar from './navbar/navbar';
 import EditNoteModal from './notes/edit-note-modal/edit-note-modal';
@@ -32,7 +24,6 @@ export function AppView(props: AppViewProps) {
 
   const noteContainerRef = useRef<HTMLDivElement>(null);
   const sidebarHandle = useRef<SidebarHandle>(null);
-  const { isAuthenticated } = useContext(AuthContext);
 
   useMountEffect(() => {
     initFlowbite();
