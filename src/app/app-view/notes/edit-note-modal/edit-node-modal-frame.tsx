@@ -105,6 +105,8 @@ function EditNoteModalFrame(props: EditNoteModalFrameProps) {
 
           if (Object.keys(changedProperties as object).length !== 0) {
             updateNote({
+              // At this point this should never be null
+              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
               noteId: originalNoteData!.noteId,
               ...changedProperties,
             });
