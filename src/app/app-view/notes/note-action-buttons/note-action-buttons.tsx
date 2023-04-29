@@ -6,7 +6,8 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline';
 import { useArchiveNote } from 'src/app/hooks/notes/useArchiveNote';
-import { useBinOrDeleteNote } from 'src/app/hooks/notes/useBinOrDeleteNote';
+import { useBinNote } from 'src/app/hooks/notes/useBinNote';
+import { useDeleteNote } from 'src/app/hooks/notes/useDeleteNote';
 import { NoteData } from 'src/app/hooks/notes/useGetNotes';
 import { useUnarchiveNote } from 'src/app/hooks/notes/useUnarchiveNote';
 import { useUnbinNote } from 'src/app/hooks/notes/useUnbinNote';
@@ -23,8 +24,9 @@ interface NoteActionButtonProps extends NoteActionButtonFrameProps {
 function NoteActionButtons(props: NoteActionButtonProps) {
   const { mutate: archiveNote } = useArchiveNote();
   const { mutate: unarchiveNote } = useUnarchiveNote();
-  const binOrDeleteNote = useBinOrDeleteNote();
   const { mutate: unbinNote } = useUnbinNote();
+  const { mutate: binNote } = useBinNote();
+  const { mutate: deleteNote } = useDeleteNote();
 
   const { noteData } = props;
 
@@ -34,44 +36,66 @@ function NoteActionButtons(props: NoteActionButtonProps) {
 
   return (
     <NoteActionButtonFrame {...props}>
-      {noteData.isBinned ? (
-        <>
-          <NoteActionButton
-            icon={<XMarkIcon className="mx-auto h-6 w-6 text-red-500" />}
-            action={() => binOrDeleteNote(noteData)}
-            tooltipText="Delete"
-          />
-          <NoteActionButton
-            icon={
-              <ArrowUpTrayIcon className="mx-auto h-6 w-6 text-green-500" />
-            }
-            action={() => unbinNote(noteData.noteId)}
-            tooltipText="Unbin"
-          />
-        </>
-      ) : (
-        <NoteActionButton
-          icon={<TrashIcon className="mx-auto h-6 w-6 text-gray-500" />}
-          action={() => binOrDeleteNote(noteData)}
-          tooltipText="Bin"
-        />
-      )}
+      {(() => {
+        // If the note is binned, show the delete and unbin buttons
+        if (noteData.isBinned) {
+          return (
+            <>
+              <NoteActionButton
+                icon={<XMarkIcon className="mx-auto h-6 w-6 text-red-500" />}
+                action={() => deleteNote(noteData.noteId)}
+                tooltipText="Delete"
+              />
+              <NoteActionButton
+                icon={
+                  <ArrowUpTrayIcon className="mx-auto h-6 w-6 text-green-500" />
+                }
+                action={() => unbinNote(noteData.noteId)}
+                tooltipText="Unbin"
+              />
+            </>
+          );
+        }
 
-      {noteData.isArchived ? (
-        <NoteActionButton
-          icon={<ArrowUpTrayIcon className="mx-auto h-6 w-6 text-green-500" />}
-          action={() => unarchiveNote(noteData.noteId)}
-          tooltipText="Unarchive"
-        />
-      ) : (
-        <NoteActionButton
-          icon={
-            <ArchiveBoxArrowDownIcon className="mx-auto h-6 w-6 text-gray-500" />
-          }
-          action={() => archiveNote(noteData.noteId)}
-          tooltipText="Archive"
-        />
-      )}
+        // If the note is not binned, show the bin button
+        if (!noteData.isBinned) {
+          return (
+            <NoteActionButton
+              icon={<TrashIcon className="mx-auto h-6 w-6 text-gray-500" />}
+              action={() => binNote(noteData.noteId)}
+              tooltipText="Bin"
+            />
+          );
+        }
+      })()}
+
+      {(() => {
+        // If the note is archived, show the unarchive button
+        if (noteData.isArchived) {
+          return (
+            <NoteActionButton
+              icon={
+                <ArrowUpTrayIcon className="mx-auto h-6 w-6 text-green-500" />
+              }
+              action={() => unarchiveNote(noteData.noteId)}
+              tooltipText="Unarchive"
+            />
+          );
+        }
+
+        // If the note is not archived, show the archive button
+        if (!noteData.isArchived) {
+          return (
+            <NoteActionButton
+              icon={
+                <ArchiveBoxArrowDownIcon className="mx-auto h-6 w-6 text-gray-500" />
+              }
+              action={() => archiveNote(noteData.noteId)}
+              tooltipText="Archive"
+            />
+          );
+        }
+      })()}
 
       <NoteActionButton
         icon={
