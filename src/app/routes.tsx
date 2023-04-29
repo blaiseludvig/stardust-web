@@ -27,5 +27,8 @@ export const routes: Route<LocationGenerics>[] = [
 ];
 
 export type LocationGenerics = MakeGenerics<{
-  Search: { modal: 'signup' | 'signin' | 'new-note' };
+  Search: {
+    modal: 'signup' | 'signin' | 'new-note' | 'edit-note';
+    editNote: string;
+  };
 }>;

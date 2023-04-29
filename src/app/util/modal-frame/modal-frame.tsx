@@ -10,6 +10,7 @@ export interface ModalFrameProps {
   hidden: boolean;
   onShow?: () => void;
   onHide?: () => void;
+  customHideEffect?: () => void;
 }
 
 function ModalFrame(props: React.PropsWithChildren<ModalFrameProps>) {
@@ -37,7 +38,13 @@ function ModalFrame(props: React.PropsWithChildren<ModalFrameProps>) {
     >
       <div
         onMouseDown={(event) => {
-          if (event.target === event.currentTarget) closeModal();
+          if (event.target !== event.currentTarget) return;
+
+          if (props.customHideEffect) {
+            props.customHideEffect();
+          } else {
+            closeModal();
+          }
         }}
         className="absolute top-0 left-0 right-0 z-[110] flex h-[calc(100%-1rem)] w-full items-center justify-center overflow-y-auto overflow-x-hidden p-4 md:inset-0 md:h-full"
       >

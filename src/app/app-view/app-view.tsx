@@ -18,6 +18,7 @@ import { LocationGenerics } from '../routes';
 import SpeedDial from '../util/speed-dial/speed-dial';
 import styles from './app-view.module.scss';
 import Navbar from './navbar/navbar';
+import EditNoteModal from './notes/edit-note-modal/edit-note-modal';
 import NewNoteModal from './notes/new-note-modal/new-note-modal';
 import NotesDial from './notes/notes-dial/notes-dial';
 import Sidebar, { SidebarHandle } from './sidebar/sidebar';
@@ -63,6 +64,19 @@ export function AppView(props: AppViewProps) {
       <SignUpModal hidden={search.modal !== 'signup'} />
 
       <NewNoteModal hidden={search.modal !== 'new-note'} />
+
+      <EditNoteModal
+        hidden={search.modal !== 'edit-note'}
+        customHideEffect={() =>
+          navigate({
+            search: (old) => ({
+              ...old,
+              modal: undefined,
+              editNote: undefined,
+            }),
+          })
+        }
+      />
     </div>
   );
 }
