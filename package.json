@@ -13,7 +13,7 @@
     "@react-hookz/web": "^23.0.0",
     "@tanstack/react-location": "^3.7.4",
     "@types/react-transition-group": "^4.4.5",
-    "classnames": "^2.3.2",
+    "clsx": "^1.2.1",
     "flowbite": "^1.6.4",
     "flowbite-react": "^0.4.2",
     "ky": "^0.33.3",

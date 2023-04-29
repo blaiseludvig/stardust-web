@@ -1,5 +1,5 @@
 import { useFirstMountState } from '@react-hookz/web';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useCloseModal } from 'src/app/hooks/useCloseModal';
@@ -28,7 +28,7 @@ function ModalFrame(props: React.PropsWithChildren<ModalFrameProps>) {
 
   return createPortal(
     <div
-      className={classNames(
+      className={clsx(
         props.hidden && 'translate-y-full',
         'fixed inset-0 z-[100] bg-gray-900 bg-opacity-50 transition-all dark:bg-opacity-80'
       )}

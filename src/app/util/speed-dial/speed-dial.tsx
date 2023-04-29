@@ -1,6 +1,5 @@
 import { useClickOutside, useToggle } from '@react-hookz/web';
-import classnames from 'classnames';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { ReactNode, useRef } from 'react';
 import { AiFillPushpin, AiOutlinePushpin } from 'react-icons/ai';
 import { match } from 'ts-pattern';
@@ -55,7 +54,7 @@ function SpeedDial(props: React.PropsWithChildren<SpeedDialProps>) {
     >
       <div
         ref={containerRef}
-        className={classNames(parentVariation, props.className, 'isolate')}
+        className={clsx(parentVariation, props.className, 'isolate')}
         onMouseEnter={
           props.triggerType === 'hover' && !isPinned
             ? () => {
@@ -72,14 +71,14 @@ function SpeedDial(props: React.PropsWithChildren<SpeedDialProps>) {
         }
       >
         <div
-          className={classnames(
+          className={clsx(
             isExpanded ? 'bottom-full' : 'bottom-1/2',
             'absolute left-0 right-0 z-[-1] mx-auto overflow-hidden transition-all duration-300 ease-in-out'
           )}
         >
           <div
             ref={contentRef}
-            className={classNames(
+            className={clsx(
               !isExpanded && 'translate-y-full opacity-0',
               contentVariation,
               'flex items-center transition-all duration-300 ease-in-out'
@@ -91,13 +90,13 @@ function SpeedDial(props: React.PropsWithChildren<SpeedDialProps>) {
                 className="relative isolate duration-300"
               >
                 <AiOutlinePushpin
-                  className={classnames(
+                  className={clsx(
                     isPinned && '-rotate-45 opacity-0',
                     'h-6 w-6 text-white transition-all duration-[inherit]'
                   )}
                 />
                 <AiFillPushpin
-                  className={classnames(
+                  className={clsx(
                     isPinned && '-rotate-45 opacity-100',
                     'absolute inset-0 z-[10] h-6 w-6 text-white opacity-0 transition-all duration-[inherit]'
                   )}

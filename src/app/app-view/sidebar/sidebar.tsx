@@ -10,7 +10,7 @@ import {
 } from '@heroicons/react/24/solid';
 import { Squares2X2Icon } from '@heroicons/react/24/solid';
 import { useNavigate } from '@tanstack/react-location';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import React, { forwardRef, useImperativeHandle, useRef } from 'react';
 import Collapsible, {
   CollapsibleHandle,
@@ -63,7 +63,7 @@ export const Sidebar = forwardRef<
 
   return (
     <DrawerFrame
-      className={classNames(
+      className={clsx(
         'fixed top-0 left-0 -translate-x-full border-r border-gray-200 bg-white transition-transform dark:border-gray-700 dark:bg-gray-800 sm:translate-x-0',
         props.className
       )}

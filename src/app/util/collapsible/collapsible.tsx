@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import {
   PropsWithChildren,
   forwardRef,
@@ -74,7 +74,7 @@ export const Collapsible = forwardRef<
   return (
     <div
       ref={containerRef}
-      className={classNames(props.className, props.collapsed ? 'hidden' : '')}
+      className={clsx(props.className, props.collapsed ? 'hidden' : '')}
     >
       {props.children}
     </div>

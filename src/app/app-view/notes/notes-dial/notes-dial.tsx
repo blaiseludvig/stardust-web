@@ -1,6 +1,6 @@
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { useNavigate } from '@tanstack/react-location';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { useContext } from 'react';
 import { TbCross } from 'react-icons/tb';
 import AuthContext from 'src/app/contexts/auth.context';
@@ -23,7 +23,7 @@ export function NotesDial(props: NotesDialProps) {
       tooltipPlacement="left"
       triggerType="hover"
       pinnable
-      className={classNames(
+      className={clsx(
         !isAuthenticated && 'invisible',
         'fixed right-6 bottom-6'
       )}

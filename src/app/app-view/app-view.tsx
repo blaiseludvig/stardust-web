@@ -1,6 +1,6 @@
 import { useMountEffect } from '@react-hookz/web';
 import { Outlet, useNavigate, useSearch } from '@tanstack/react-location';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import 'flowbite';
 import { initFlowbite } from 'flowbite';
 import { useRef } from 'react';
@@ -41,7 +41,7 @@ export function AppView(props: AppViewProps) {
 
       <div
         ref={noteContainerRef}
-        className={classNames(
+        className={clsx(
           styles['notes-container'],
           'mt-14 h-[calc(100%-3.5rem)] w-full overflow-y-scroll bg-slate-600 px-4 pt-4'
         )}

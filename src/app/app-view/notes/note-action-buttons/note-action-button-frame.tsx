@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { PropsWithChildren } from 'react';
 
 export interface NoteActionButtonFrameProps {
@@ -10,7 +10,7 @@ function NoteActionButtonFrame(
 ) {
   return (
     <div
-      className={classNames(
+      className={clsx(
         props.hidden && 'hidden',
         'absolute bottom-1 right-2 inline-flex shadow-sm'
       )}
