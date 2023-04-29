@@ -32,7 +32,7 @@ function ModalFrame(props: React.PropsWithChildren<ModalFrameProps>) {
     <div
       className={classNames(
         props.hidden && 'translate-y-full',
-        'fixed inset-0 z-[100] bg-gray-900 bg-opacity-50 dark:bg-opacity-80'
+        'fixed inset-0 z-[100] bg-gray-900 bg-opacity-50 transition-all dark:bg-opacity-80'
       )}
     >
       <div
