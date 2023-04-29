@@ -53,54 +53,7 @@ export function NoteCard(props: NoteCardProps) {
         {content}
       </p>
 
-      <NoteActionButtons hidden={!showActionButtons}>
-        {isBinned ? (
-          <>
-            <NoteActionButton
-              icon={<XMarkIcon className="mx-auto h-6 w-6 text-red-500" />}
-              action={() => binOrDeleteNote(props.data)}
-              tooltipText="Delete"
-            />
-            <NoteActionButton
-              icon={
-                <ArrowUpTrayIcon className="mx-auto h-6 w-6 text-green-500" />
-              }
-              action={() => unbinNote(noteId)}
-              tooltipText="Unbin"
-            />
-          </>
-        ) : (
-          <NoteActionButton
-            icon={<TrashIcon className="mx-auto h-6 w-6 text-gray-500" />}
-            action={() => binOrDeleteNote(props.data)}
-            tooltipText="Bin"
-          />
-        )}
-
-        {isArchived ? (
-          <NoteActionButton
-            icon={
-              <ArrowUpTrayIcon className="mx-auto h-6 w-6 text-green-500" />
-            }
-            action={() => unarchiveNote(noteId)}
-            tooltipText="Unarchive"
-          />
-        ) : (
-          <NoteActionButton
-            icon={
-              <ArchiveBoxArrowDownIcon className="mx-auto h-6 w-6 text-gray-500" />
-            }
-            action={() => archiveNote(noteId)}
-            tooltipText="Archive"
-          />
-        )}
-
-        <NoteActionButton
-          icon={
-            <EllipsisVerticalIcon className="mx-auto h-6 w-6 text-gray-500" />
-          }
-        />
-      </NoteActionButtons>
+      <NoteActionButtons hidden={!showActionButtons} noteData={props.data} />
     </div>
   );
 }
