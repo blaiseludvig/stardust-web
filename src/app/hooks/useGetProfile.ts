@@ -16,7 +16,7 @@ export function useGetProfile() {
   return useQuery(
     'getProfile',
     async () => {
-      const response = await myky.get('profile');
+      const response = await myky.get('account/profile');
       const json: UserProfile = await response.json();
 
       return json;
