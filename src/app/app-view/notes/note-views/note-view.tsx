@@ -11,6 +11,7 @@ import Unauthenticated from './unathenticated';
 export interface NoteViewProps {
   data: NoteData[];
   noDataElement?: ReactNode;
+  beforeGridElement?: ReactNode;
 }
 
 function NoteView(props: React.PropsWithChildren<NoteViewProps>) {
@@ -33,15 +34,18 @@ function NoteView(props: React.PropsWithChildren<NoteViewProps>) {
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>{props.noDataElement}</>
   ) : (
-    <Masonry
-      breakpointCols={3}
-      className={styles['notes-masonry-grid']}
-      columnClassName={styles['notes-masonry-grid-column']}
-    >
-      {props.data.map((noteData) => (
-        <NoteCard data={noteData} key={noteData.noteId} />
-      ))}
-    </Masonry>
+    <div>
+      {props.beforeGridElement}
+      <Masonry
+        breakpointCols={3}
+        className={styles['notes-masonry-grid']}
+        columnClassName={styles['notes-masonry-grid-column']}
+      >
+        {props.data.map((noteData) => (
+          <NoteCard data={noteData} key={noteData.noteId} />
+        ))}
+      </Masonry>
+    </div>
   );
 }
 
