@@ -1,5 +1,10 @@
 import { useMountEffect } from '@react-hookz/web';
-import { Outlet, useNavigate, useSearch } from '@tanstack/react-location';
+import {
+  MatchRoute,
+  Outlet,
+  useNavigate,
+  useSearch,
+} from '@tanstack/react-location';
 import clsx from 'clsx';
 import 'flowbite';
 import { initFlowbite } from 'flowbite';
@@ -47,7 +52,10 @@ export function AppView(props: AppViewProps) {
         )}
       >
         <Outlet />
-        <NotesDial />
+
+        <MatchRoute to=".">
+          <NotesDial />
+        </MatchRoute>
       </div>
 
       <SignInModal hidden={search.modal !== 'signin'} />
