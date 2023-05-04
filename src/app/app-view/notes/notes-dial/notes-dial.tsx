@@ -19,7 +19,6 @@ export function NotesDial(props: NotesDialProps) {
 
   return (
     <SpeedDial
-      alignment="vertical"
       tooltipPlacement="left"
       triggerType="hover"
       pinnable

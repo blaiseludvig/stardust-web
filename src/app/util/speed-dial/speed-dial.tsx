@@ -2,14 +2,12 @@ import { useClickOutside, useToggle } from '@react-hookz/web';
 import clsx from 'clsx';
 import { ReactNode, useRef } from 'react';
 import { AiFillPushpin, AiOutlinePushpin } from 'react-icons/ai';
-import { match } from 'ts-pattern';
 
 import { placementTypes } from '../tooltip/tooltip';
-import DialAlignmentContext, { alignmentTypes } from './dial-alignment.context';
 import DialItem from './dial-item';
+import TooltipAlignmentContext from './tooltip-alignment.context';
 
 export interface SpeedDialProps {
-  alignment: alignmentTypes;
   tooltipPlacement: placementTypes;
   triggerButton: ReactNode;
   triggerType: 'hover' | 'click';
@@ -19,23 +17,12 @@ export interface SpeedDialProps {
   className?: string;
 }
 
-// TODO: Fix horizontal aligned variation
 function SpeedDial(props: React.PropsWithChildren<SpeedDialProps>) {
   const [isPinned, togglePinned] = useToggle(props.pinned);
   const [isExpanded, toggleExpanded] = useToggle(props.expanded);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-
-  const parentVariation = match(props.alignment)
-    .with('vertical', () => '')
-    .with('horizontal', () => 'flex')
-    .exhaustive();
-
-  const contentVariation = match(props.alignment)
-    .with('vertical', () => 'mb-3 flex-col space-y-2')
-    .with('horizontal', () => 'mr-3 space-x-2')
-    .exhaustive();
 
   useClickOutside(
     containerRef,
@@ -46,22 +33,14 @@ function SpeedDial(props: React.PropsWithChildren<SpeedDialProps>) {
   );
 
   return (
-    <DialAlignmentContext.Provider
+    <TooltipAlignmentContext.Provider
       value={{
         tooltipPlacement: props.tooltipPlacement,
-        alignment: props.alignment,
       }}
     >
       <div
         ref={containerRef}
-        className={clsx(parentVariation, props.className, 'isolate')}
-        onMouseEnter={
-          props.triggerType === 'hover' && !isPinned
-            ? () => {
-                toggleExpanded(true);
-              }
-            : undefined
-        }
+        className={clsx(props.className, 'isolate')}
         onMouseLeave={
           props.triggerType === 'hover' && !isPinned
             ? () => {
@@ -80,8 +59,7 @@ function SpeedDial(props: React.PropsWithChildren<SpeedDialProps>) {
             ref={contentRef}
             className={clsx(
               !isExpanded && 'translate-y-full opacity-0',
-              contentVariation,
-              'flex items-center transition-all duration-300 ease-in-out'
+              'mb-3 flex flex-col items-center space-y-2 transition-all duration-300 ease-in-out'
             )}
           >
             {props.pinnable && (
@@ -108,16 +86,23 @@ function SpeedDial(props: React.PropsWithChildren<SpeedDialProps>) {
         </div>
 
         <div
+          onMouseEnter={
+            props.triggerType === 'hover' && !isPinned
+              ? () => toggleExpanded(true)
+              : // eslint-disable-next-line @typescript-eslint/no-empty-function
+                () => {}
+          }
           onMouseDown={
             props.triggerType === 'click' && !isPinned
               ? () => toggleExpanded()
-              : undefined
+              : // eslint-disable-next-line @typescript-eslint/no-empty-function
+                () => {}
           }
         >
           {props.triggerButton}
         </div>
       </div>
-    </DialAlignmentContext.Provider>
+    </TooltipAlignmentContext.Provider>
   );
 }
 

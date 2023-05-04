@@ -1,7 +1,7 @@
 import { HTMLAttributes, ReactNode, useContext, useRef } from 'react';
 
 import Tooltip from '../tooltip/tooltip';
-import DialAlignmentContext from './dial-alignment.context';
+import TooltipAlignmentContext from './tooltip-alignment.context';
 
 export interface DialItemProps extends HTMLAttributes<HTMLButtonElement> {
   icon: ReactNode;
@@ -11,7 +11,7 @@ export interface DialItemProps extends HTMLAttributes<HTMLButtonElement> {
 function DialItem(props: DialItemProps) {
   const { icon, tooltip, ...otherProps } = props;
 
-  const { tooltipPlacement } = useContext(DialAlignmentContext);
+  const { tooltipPlacement } = useContext(TooltipAlignmentContext);
 
   const buttonRef = useRef<HTMLButtonElement>(null);
 
