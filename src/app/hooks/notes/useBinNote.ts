@@ -8,10 +8,7 @@ export function useBinNote() {
 
   return useMutation(
     async (noteId: string) => {
-      const response = await myky.patch(`notes/bin/${noteId}`);
-      const json = await response.json();
-
-      return json;
+      await myky.patch(`notes/bin/${noteId}`);
     },
     {
       onSuccess: () => {

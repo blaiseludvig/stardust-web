@@ -8,10 +8,7 @@ export function useUnarchiveNote() {
 
   return useMutation(
     async (noteId: string) => {
-      const response = await myky.patch(`notes/unarchive/${noteId}`);
-      const json = await response.json();
-
-      return json;
+      await myky.patch(`notes/unarchive/${noteId}`);
     },
     {
       onSuccess: () => {
