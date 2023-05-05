@@ -16,7 +16,7 @@ export const routes: Route<LocationGenerics>[] = [
     path: '/app',
     element: <AppView />,
     children: [
-      { path: '/', element: <AllNotes /> },
+      { path: '/notes', element: <AllNotes /> },
       { path: 'bin', element: <BinnedNotes /> },
       { path: 'archive', element: <ArchivedNotes /> },
     ],

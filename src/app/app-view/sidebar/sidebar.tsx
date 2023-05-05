@@ -67,7 +67,7 @@ export const Sidebar = forwardRef<
           <SidebarItem
             text="All notes"
             icon={<CubeIcon className="h-6 w-6 text-gray-500" />}
-            onMouseDown={() => navigate({ to: '.' })}
+            onMouseDown={() => navigate({ to: 'notes' })}
           />
 
           {true && (

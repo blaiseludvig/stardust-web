@@ -53,7 +53,7 @@ export function AppView(props: AppViewProps) {
       >
         <Outlet />
 
-        <MatchRoute to=".">
+        <MatchRoute to="notes">
           <NotesDial />
         </MatchRoute>
       </div>
