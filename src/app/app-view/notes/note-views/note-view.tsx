@@ -37,7 +37,7 @@ function NoteView(props: React.PropsWithChildren<NoteViewProps>) {
     <div>
       {props.beforeGridElement}
       <Masonry
-        breakpointCols={3}
+        breakpointCols={{ 768: 1, 1280: 2, default: 3 }}
         className={styles['notes-masonry-grid']}
         columnClassName={styles['notes-masonry-grid-column']}
       >
