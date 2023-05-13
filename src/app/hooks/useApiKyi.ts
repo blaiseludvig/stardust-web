@@ -2,9 +2,13 @@ import { useLocalStorageValue } from '@react-hookz/web';
 import { useNavigate } from '@tanstack/react-location';
 import ky, { AfterResponseHook, BeforeRequestHook } from 'ky';
 
+import { useSignIn } from './auth/useSignIn';
+import { useSignOut } from './auth/useSignOut';
+
 export function useApiKy() {
   const navigate = useNavigate();
   const { value: jwt } = useLocalStorageValue('api-auth-jwt');
+  const signOut = useSignOut();
 
   const afterResponse: AfterResponseHook = async (
     request,
@@ -12,7 +16,7 @@ export function useApiKy() {
     response
   ) => {
     if (response.status === 401) {
-      // navigate({ to: '/' });
+      signOut();
     }
   };
 
