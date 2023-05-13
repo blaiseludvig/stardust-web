@@ -2,11 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 /* You can add global styles to this file, and also import other style files */
+:root,
 html,
 body,
 #root,
 #app {
   height: 100%;
+  @apply bg-slate-600;
 }
 
 // This is needed to remove the default border from inputs and textareas
