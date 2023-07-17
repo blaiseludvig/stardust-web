@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import ReactTextareaAutosize from 'react-textarea-autosize';
 import { useCreateNote } from 'src/app/hooks/notes/useCreateNote';
@@ -15,7 +15,16 @@ function NewNoteModal(props: EditNoteModalFrameProps) {
 
   const formRef = useRef<HTMLFormElement>(null);
 
-  const { register, handleSubmit } = useForm<Partial<NoteData>>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { isSubmitSuccessful },
+  } = useForm<Partial<NoteData>>();
+
+  // This should only run when the form submits, so we can disable this
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => reset(), [isSubmitSuccessful]);
 
   return (
     <ModalFrame
