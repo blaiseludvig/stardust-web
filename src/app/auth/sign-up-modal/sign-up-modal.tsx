@@ -25,7 +25,7 @@ export function SignUpModal(props: ModalFrameProps) {
           <button
             onMouseDown={() => closeModal()}
             type="button"
-            className="absolute top-3 right-2.5 ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
+            className="absolute right-2.5 top-3 ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
           >
             <XMarkIcon className="h-6 w-6 text-gray-500" />
             <span className="sr-only">Close modal</span>
