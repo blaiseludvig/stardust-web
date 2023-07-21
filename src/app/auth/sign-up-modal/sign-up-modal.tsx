@@ -1,4 +1,6 @@
+import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
 import { XMarkIcon } from '@heroicons/react/24/solid';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSignIn } from 'src/app/hooks/auth/useSignIn';
 import { useSignUp } from 'src/app/hooks/auth/useSignUp';
@@ -11,6 +13,8 @@ export function SignUpModal(props: ModalFrameProps) {
   const closeModal = useCloseModal();
   const signUp = useSignUp();
   const signIn = useSignIn();
+
+  const [displayedErrors, setDisplayedErrors] = useState<string[]>([]);
 
   const { register, handleSubmit, reset } = useForm<{
     email: string;
@@ -35,18 +39,57 @@ export function SignUpModal(props: ModalFrameProps) {
               Sign up
             </h3>
             <form
+              noValidate
               onSubmit={handleSubmit(async (data) => {
+                const errorMessages: string[] = [];
+
                 if (!data.email) {
-                  return;
+                  errorMessages.push('Please type in your email address');
                 }
+
+                const emailRegex =
+                  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+                if (data.email && !data.email.match(emailRegex)) {
+                  errorMessages.push('Please provide a valid email address');
+                }
+
+                if (!data.password) {
+                  errorMessages.push('Please type in your password');
+                }
+
                 if (data.password !== data.confirmPassword) {
+                  errorMessages.push(
+                    "The passwords don't match. Please try again"
+                  );
+                }
+
+                if (errorMessages.length !== 0) {
+                  setDisplayedErrors(errorMessages);
                   return;
                 }
+
                 const res = await signUp(data.email, data.password);
-                if (res.ok) {
-                  signIn(data.email, data.password);
+
+                if (!res.ok) {
+                  const json = (await res.json()) as {
+                    statusCode: number;
+                    error: string;
+                    message: string | string[];
+                  };
+
+                  if (Array.isArray(json.message)) {
+                    setDisplayedErrors(json.message);
+                  } else {
+                    setDisplayedErrors([json.message]);
+                  }
                 }
-                closeModal();
+
+                if (res.ok) {
+                  setDisplayedErrors([]);
+                  signIn(data.email, data.password);
+                  closeModal();
+                }
               })}
               className="space-y-6"
               action="#"
@@ -61,9 +104,9 @@ export function SignUpModal(props: ModalFrameProps) {
                 <input
                   {...register('email')}
                   type="email"
+                  inputMode="email"
                   className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
                   placeholder=""
-                  required
                 />
               </div>
               <div>
@@ -78,7 +121,6 @@ export function SignUpModal(props: ModalFrameProps) {
                   type="password"
                   placeholder="••••••••"
                   className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
-                  required
                 />
               </div>
               <div>
@@ -93,7 +135,6 @@ export function SignUpModal(props: ModalFrameProps) {
                   type="password"
                   placeholder="••••••••"
                   className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
-                  required
                 />
               </div>
               <button
@@ -102,6 +143,18 @@ export function SignUpModal(props: ModalFrameProps) {
               >
                 Sign up
               </button>
+              <div>
+                {displayedErrors.map((message) => {
+                  return (
+                    <div className="flex items-center">
+                      <ExclamationCircleIcon className="h-8 w-8 stroke-[2] text-rose-500" />
+                      <span className="basis-full font-semibold leading-[1.1] text-rose-500">
+                        {message}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
             </form>
           </div>
         </div>
