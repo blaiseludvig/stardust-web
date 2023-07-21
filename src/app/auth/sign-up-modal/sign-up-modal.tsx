@@ -12,14 +12,14 @@ export function SignUpModal(props: ModalFrameProps) {
   const signUp = useSignUp();
   const signIn = useSignIn();
 
-  const { register, handleSubmit } = useForm<{
+  const { register, handleSubmit, reset } = useForm<{
     email: string;
     password: string;
     confirmPassword: string;
   }>();
 
   return (
-    <ModalFrame hidden={props.hidden}>
+    <ModalFrame hidden={props.hidden} onHide={() => reset()}>
       <div className="relative w-full max-w-md">
         <div className="relative rounded-lg bg-white shadow dark:bg-gray-700">
           <button
