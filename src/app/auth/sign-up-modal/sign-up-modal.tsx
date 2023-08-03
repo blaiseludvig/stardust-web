@@ -1,5 +1,6 @@
-import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
-import { XMarkIcon } from '@heroicons/react/24/solid';
+import { ExclamationCircleIcon, EyeIcon } from '@heroicons/react/24/outline';
+import { EyeSlashIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import { useToggle } from '@react-hookz/web';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSignIn } from 'src/app/hooks/auth/useSignIn';
@@ -15,6 +16,10 @@ export function SignUpModal(props: ModalFrameProps) {
   const signIn = useSignIn();
 
   const [displayedErrors, setDisplayedErrors] = useState<string[]>([]);
+
+  const [isPasswordVisible, togglePasswordVisible] = useToggle(false);
+  const [isPasswordConfirmationVisible, togglePasswordConfirmationVisible] =
+    useToggle(false);
 
   const { register, handleSubmit, reset } = useForm<{
     email: string;
@@ -115,26 +120,60 @@ export function SignUpModal(props: ModalFrameProps) {
                 >
                   Your password
                 </label>
-                <input
-                  {...register('password')}
-                  type="password"
-                  placeholder="••••••••"
-                  className="block w-full rounded-lg border border-gray-500 bg-gray-600  p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
-                />
+                <div className="flex w-full items-center rounded-lg border border-gray-500 bg-gray-600 pr-2.5 text-sm text-white placeholder-gray-400 focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
+                  <input
+                    {...register('password')}
+                    type={isPasswordVisible ? 'text' : 'password'}
+                    placeholder="Enter your password here"
+                    className="block w-full rounded-lg border-none bg-gray-600 p-2.5 text-sm text-white placeholder-gray-400 focus:ring-0"
+                  />
+                  <div
+                    tabIndex={0}
+                    onMouseDown={() => togglePasswordVisible()}
+                    onKeyDown={(e) => {
+                      if (e.code === 'Space' || e.code === 'Enter') {
+                        togglePasswordVisible();
+                      }
+                    }}
+                  >
+                    {isPasswordVisible ? (
+                      <EyeIcon className="h-6 w-6 cursor-pointer text-gray-500" />
+                    ) : (
+                      <EyeSlashIcon className="h-6 w-6 cursor-pointer text-gray-500" />
+                    )}
+                  </div>
+                </div>
               </div>
               <div>
                 <label
-                  htmlFor="password"
+                  htmlFor="confirmPassword"
                   className="mb-2 block text-sm font-medium  text-white"
                 >
-                  Confirm password
+                  Confirm your password
                 </label>
-                <input
-                  {...register('confirmPassword')}
-                  type="password"
-                  placeholder="••••••••"
-                  className="block w-full rounded-lg border  border-gray-500 bg-gray-600  p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
-                />
+                <div className="flex w-full items-center rounded-lg border border-gray-500 bg-gray-600 pr-2.5 text-sm text-white placeholder-gray-400 focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
+                  <input
+                    {...register('confirmPassword')}
+                    type={isPasswordConfirmationVisible ? 'text' : 'password'}
+                    placeholder="Confirm your password here"
+                    className="block w-full rounded-lg border-none bg-gray-600 p-2.5 text-sm text-white placeholder-gray-400 focus:ring-0"
+                  />
+                  <div
+                    tabIndex={0}
+                    onMouseDown={() => togglePasswordConfirmationVisible()}
+                    onKeyDown={(e) => {
+                      if (e.code === 'Space' || e.code === 'Enter') {
+                        togglePasswordConfirmationVisible();
+                      }
+                    }}
+                  >
+                    {isPasswordConfirmationVisible ? (
+                      <EyeIcon className="h-6 w-6 cursor-pointer text-gray-500" />
+                    ) : (
+                      <EyeSlashIcon className="h-6 w-6 cursor-pointer text-gray-500" />
+                    )}
+                  </div>
+                </div>
               </div>
               <button
                 type="submit"
