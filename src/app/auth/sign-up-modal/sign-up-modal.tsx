@@ -21,11 +21,13 @@ export function SignUpModal(props: ModalFrameProps) {
   const [isPasswordConfirmationVisible, togglePasswordConfirmationVisible] =
     useToggle(false);
 
-  const { register, handleSubmit, reset } = useForm<{
+  type formDataType = {
     email: string;
     password: string;
     confirmPassword: string;
-  }>();
+  };
+
+  const { register, handleSubmit, reset } = useForm<formDataType>();
 
   return (
     <ModalFrame hidden={props.hidden} onHide={() => reset()}>
