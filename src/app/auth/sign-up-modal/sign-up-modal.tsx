@@ -104,8 +104,8 @@ export function SignUpModal(props: ModalFrameProps) {
                   {...register('email')}
                   type="email"
                   inputMode="email"
-                  className="block w-full rounded-lg border border-gray-500 bg-gray-600  p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
-                  placeholder=""
+                  placeholder="john.doe@example.com"
+                  className="block w-full rounded-lg border border-gray-500 bg-gray-600 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                 />
               </div>
               <div>
