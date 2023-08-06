@@ -1,11 +1,11 @@
 import { ExclamationCircleIcon, EyeIcon } from '@heroicons/react/24/outline';
 import { EyeSlashIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import { useToggle } from '@react-hookz/web';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSignIn } from 'src/app/hooks/auth/useSignIn';
 import { useSignUp } from 'src/app/hooks/auth/useSignUp';
 import { useCloseModal } from 'src/app/hooks/useCloseModal';
+import { extractNestedProperties } from 'src/app/util/lib/extractNestedProperties';
 import ModalFrame, {
   ModalFrameProps,
 } from 'src/app/util/modal-frame/modal-frame';
@@ -14,8 +14,6 @@ export function SignUpModal(props: ModalFrameProps) {
   const closeModal = useCloseModal();
   const signUp = useSignUp();
   const signIn = useSignIn();
-
-  const [displayedErrors, setDisplayedErrors] = useState<string[]>([]);
 
   const [isPasswordVisible, togglePasswordVisible] = useToggle(false);
   const [isPasswordConfirmationVisible, togglePasswordConfirmationVisible] =
@@ -27,7 +25,8 @@ export function SignUpModal(props: ModalFrameProps) {
     confirmPassword: string;
   };
 
-  const { register, handleSubmit, reset } = useForm<formDataType>();
+  const { register, formState, handleSubmit, reset, setError, clearErrors } =
+    useForm<formDataType>();
 
   return (
     <ModalFrame hidden={props.hidden} onHide={() => reset()}>
@@ -47,34 +46,6 @@ export function SignUpModal(props: ModalFrameProps) {
             <form
               noValidate
               onSubmit={handleSubmit(async (data) => {
-                const errorMessages: string[] = [];
-
-                if (!data.email) {
-                  errorMessages.push('Please type in your email address');
-                }
-
-                const emailRegex =
-                  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-                if (data.email && !data.email.match(emailRegex)) {
-                  errorMessages.push('Please provide a valid email address');
-                }
-
-                if (!data.password) {
-                  errorMessages.push('Please type in your password');
-                }
-
-                if (data.password !== data.confirmPassword) {
-                  errorMessages.push(
-                    "The passwords don't match. Please try again"
-                  );
-                }
-
-                if (errorMessages.length !== 0) {
-                  setDisplayedErrors(errorMessages);
-                  return;
-                }
-
                 const res = await signUp(data.email, data.password);
 
                 if (!res.ok) {
@@ -85,14 +56,19 @@ export function SignUpModal(props: ModalFrameProps) {
                   };
 
                   if (Array.isArray(json.message)) {
-                    setDisplayedErrors(json.message);
+                    json.message.forEach((message, index) =>
+                      setError(`root.serverside${index}`, {
+                        type: `root.serverside${index}`,
+                        message: message,
+                      })
+                    );
                   } else {
-                    setDisplayedErrors([json.message]);
+                    setError('root.0', { message: json.message });
                   }
                 }
 
                 if (res.ok) {
-                  setDisplayedErrors([]);
+                  clearErrors();
                   signIn(data.email, data.password);
                   closeModal();
                 }
@@ -108,7 +84,20 @@ export function SignUpModal(props: ModalFrameProps) {
                   Your email
                 </label>
                 <input
-                  {...register('email')}
+                  {...register('email', {
+                    required: 'Please type in your email address',
+                    validate: {
+                      isEmail: (value) => {
+                        const emailRegex =
+                          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+                        return (
+                          value.match(emailRegex) ||
+                          'Please provide a valid email address'
+                        );
+                      },
+                    },
+                  })}
                   type="email"
                   inputMode="email"
                   placeholder="john.doe@example.com"
@@ -124,7 +113,10 @@ export function SignUpModal(props: ModalFrameProps) {
                 </label>
                 <div className="flex w-full items-center rounded-lg border border-gray-500 bg-gray-600 pr-2.5 text-sm text-white placeholder-gray-400 focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
                   <input
-                    {...register('password')}
+                    {...register('password', {
+                      required: 'Please type in your password',
+                      deps: ['confirmPassword'],
+                    })}
                     type={isPasswordVisible ? 'text' : 'password'}
                     placeholder="Enter your password here"
                     className="block w-full rounded-lg border-none bg-gray-600 p-2.5 text-sm text-white placeholder-gray-400 focus:ring-0"
@@ -155,7 +147,14 @@ export function SignUpModal(props: ModalFrameProps) {
                 </label>
                 <div className="flex w-full items-center rounded-lg border border-gray-500 bg-gray-600 pr-2.5 text-sm text-white placeholder-gray-400 focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
                   <input
-                    {...register('confirmPassword')}
+                    {...register('confirmPassword', {
+                      required: 'Please confirm your password',
+                      validate: {
+                        passwordsMatch: (_, formValues) =>
+                          formValues.confirmPassword === formValues.password ||
+                          "The passwords don't match. Please try again",
+                      },
+                    })}
                     type={isPasswordConfirmationVisible ? 'text' : 'password'}
                     placeholder="Confirm your password here"
                     className="block w-full rounded-lg border-none bg-gray-600 p-2.5 text-sm text-white placeholder-gray-400 focus:ring-0"
@@ -183,17 +182,20 @@ export function SignUpModal(props: ModalFrameProps) {
               >
                 Sign up
               </button>
+
               <div>
-                {displayedErrors.map((message) => {
-                  return (
-                    <div className="flex items-center">
-                      <ExclamationCircleIcon className="h-8 w-8 stroke-[2] text-rose-500" />
-                      <span className="basis-full font-semibold leading-[1.1] text-rose-500">
-                        {message}
-                      </span>
-                    </div>
-                  );
-                })}
+                {extractNestedProperties(
+                  formState.errors,
+                  'message',
+                  'string'
+                ).map((message, index) => (
+                  <div key={index} className="flex items-center">
+                    <ExclamationCircleIcon className="h-8 w-8 stroke-[2] text-rose-500" />
+                    <span className="basis-full font-semibold leading-[1.1] text-rose-500">
+                      {message}
+                    </span>
+                  </div>
+                ))}
               </div>
             </form>
           </div>

@@ -10,6 +10,7 @@
   "private": true,
   "dependencies": {
     "@heroicons/react": "^2.0.16",
+    "@hookform/error-message": "^2.0.1",
     "@react-hookz/web": "^23.0.0",
     "@tanstack/react-location": "^3.7.4",
     "@types/react-transition-group": "^4.4.5",
