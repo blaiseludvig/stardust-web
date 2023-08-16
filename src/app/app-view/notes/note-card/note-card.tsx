@@ -44,7 +44,7 @@ export function NoteCard(props: NoteCardProps) {
           search: (old) => ({ ...old, modal: 'edit-note', editNote: noteId }),
         })
       }
-      className="relative block break-words rounded-lg border border-gray-200 bg-white p-6 pb-16 shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+      className="relative block break-words rounded-lg border p-6 pb-16 shadow border-gray-700 bg-gray-800 hover:bg-gray-700"
       onMouseOver={() => toggleShowActionButtons(true)}
       onMouseOut={() => toggleShowActionButtons(false)}
     >
