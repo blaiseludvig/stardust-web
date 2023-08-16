@@ -37,7 +37,7 @@ function SidebarDropdownItem(props: SidebarDropdownItemProps) {
           }
         }}
         type="button"
-        className="group flex w-full items-center rounded-lg p-2 text-base font-normal text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+        className="group flex w-full items-center rounded-lg p-2 text-base font-normal text-white transition duration-75 hover:bg-gray-700"
       >
         <div className="h-6 w-6">{props.icon}</div>
         <span className="ml-3 flex-1 whitespace-nowrap text-left">

@@ -56,13 +56,13 @@ export const Sidebar = forwardRef<
   return (
     <DrawerFrame
       className={clsx(
-        'fixed top-0 left-0 -translate-x-full border-r border-gray-200 bg-white transition-transform dark:border-gray-700 dark:bg-gray-800 sm:translate-x-0',
+        'fixed left-0 top-0 -translate-x-full border-r border-gray-700 bg-gray-800 transition-transform sm:translate-x-0',
         props.className
       )}
       ref={drawerFrameHandle}
       {...otherProps}
     >
-      <div className="h-full overflow-y-auto bg-white px-3 pt-3 pb-4 dark:bg-gray-800">
+      <div className="h-full overflow-y-auto bg-gray-800 px-3 pb-4 pt-3">
         <ul className="space-y-2">
           <SidebarItem
             text="All notes"

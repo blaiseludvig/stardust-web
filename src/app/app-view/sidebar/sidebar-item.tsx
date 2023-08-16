@@ -15,7 +15,7 @@ function SidebarItem(props: SidebarItemProps) {
         onMouseDown={props.onMouseDown}
         className={clsx(
           props.className,
-          'flex cursor-pointer items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700'
+          'flex cursor-pointer items-center rounded-lg p-2 text-base font-normal text-white hover:bg-gray-700'
         )}
       >
         <div className="h-6 w-6">{props.icon}</div>
