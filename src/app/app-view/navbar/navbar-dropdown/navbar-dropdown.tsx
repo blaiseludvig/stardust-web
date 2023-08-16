@@ -26,17 +26,17 @@ export function NavbarDropdown(props: NavbarDropdownProps) {
       <DropdownFrame
         ref={dropdownFrameHandle}
         trigger={props.trigger}
-        className="z-50 hidden list-none divide-y divide-gray-100 rounded bg-white text-base shadow dark:divide-gray-600 dark:bg-gray-700"
+        className="z-50 hidden list-none divide-y divide-gray-600 rounded bg-gray-700 text-base shadow"
       >
         <div className="px-4 py-3" role="none">
-          <p className="text-sm text-gray-900 dark:text-white" role="none">
+          <p className="text-sm text-white" role="none">
             Welcome!
           </p>
         </div>
         <ul className="py-1" role="none">
           <li>
             <button
-              className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+              className="block w-full px-4 py-2 text-left text-sm text-gray-300 hover:bg-gray-600 hover:text-white"
               role="menuitem"
               onMouseDown={() => {
                 dropdownFrameHandle.current?.hide();
@@ -63,10 +63,10 @@ export function NavbarDropdown(props: NavbarDropdownProps) {
     <DropdownFrame
       ref={dropdownFrameHandle}
       trigger={props.trigger}
-      className="z-50 hidden list-none divide-y divide-gray-100 rounded bg-white text-base shadow dark:divide-gray-600 dark:bg-gray-700"
+      className="z-50 hidden list-none divide-y divide-gray-600 rounded bg-gray-700 text-base shadow"
     >
       <div className="px-4 py-3" role="none">
-        <p className="text-sm text-gray-900 dark:text-white" role="none">
+        <p className="text-sm text-white" role="none">
           {userData?.email}
         </p>
       </div>
@@ -74,7 +74,7 @@ export function NavbarDropdown(props: NavbarDropdownProps) {
         <li>
           <Link
             to={'settings'}
-            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+            className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-600 hover:text-white"
             role="menuitem"
           >
             Settings
@@ -83,7 +83,7 @@ export function NavbarDropdown(props: NavbarDropdownProps) {
 
         <li>
           <button
-            className="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+            className="block w-full px-4 py-2 text-left text-sm text-gray-300 hover:bg-gray-600 hover:text-white"
             role="menuitem"
             onClick={() => {
               dropdownFrameHandle.current?.hide();
