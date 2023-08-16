@@ -23,7 +23,7 @@ export function Navbar(props: NavbarProps) {
                 props.sidebarRef.current?.toggle();
               }}
               type="button"
-              className="inline-flex items-center rounded-lg p-2 text-sm  focus:outline-none focus:ring-2 text-gray-400 hover:bg-gray-700 focus:ring-gray-600 md:hidden"
+              className="inline-flex items-center rounded-lg p-2 text-sm  text-gray-400 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600 md:hidden"
             >
               <span className="sr-only">Open sidebar</span>
               <svg
@@ -53,7 +53,7 @@ export function Navbar(props: NavbarProps) {
               <div className="flex flex-row">
                 <button
                   type="button"
-                  className="flex rounded-full bg-gray-800 text-sm focus:ring-4 focus:ring-gray-600"
+                  className="flex rounded-full bg-gray-800 text-sm hover:ring-[5px] hover:ring-gray-600 focus:ring-[7px] focus:ring-gray-500 transition ease-in-out duration-300"
                   ref={buttonRef}
                 >
                   <span className="sr-only">Open user menu</span>
