@@ -112,7 +112,7 @@ function EditNoteModalFrame(props: EditNoteModalFrameProps) {
             });
           }
         })}
-        className="relative block max-w-3xl break-words rounded-lg border border-gray-200 bg-white p-6 pb-16 shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800"
+        className="relative block max-w-3xl break-words rounded-lg border p-6 pb-16 shadow border-gray-700 bg-gray-800"
       >
         {(() => {
           const { ref: formTitleRef, ...rest } = register('title');
@@ -125,7 +125,7 @@ function EditNoteModalFrame(props: EditNoteModalFrameProps) {
               }}
               {...rest}
               placeholder="Title"
-              className="mb-2 w-full cursor-default resize-none border-none bg-gray-800 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+              className="mb-2 w-full cursor-default resize-none border-none bg-gray-800 text-2xl font-bold tracking-tight text-white"
             />
           );
         })()}
