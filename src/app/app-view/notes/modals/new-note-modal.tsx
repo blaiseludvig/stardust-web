@@ -38,12 +38,12 @@ function NewNoteModal(props: EditNoteModalFrameProps) {
       <form
         ref={formRef}
         onSubmit={handleSubmit((data) => createNote(data))}
-        className="relative block max-w-3xl break-words rounded-lg border border-gray-200 bg-white p-6 pb-16 shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800"
+        className="relative block max-w-3xl break-words rounded-lg border border-gray-700 bg-gray-800 p-6 pb-16 shadow"
       >
         <ReactTextareaAutosize
           {...register('title')}
           placeholder="Title"
-          className="mb-2 w-full cursor-default resize-none border-none bg-gray-800 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          className="mb-2 w-full cursor-default resize-none border-none bg-gray-800 text-2xl font-bold tracking-tight  text-white"
         />
 
         <ReactTextareaAutosize
