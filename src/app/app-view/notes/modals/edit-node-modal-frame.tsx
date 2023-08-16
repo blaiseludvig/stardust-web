@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import ReactTextareaAutosize from 'react-textarea-autosize';
 import { NoteData } from 'src/app/hooks/notes/useGetNotes';
 import { useUpdateNote } from 'src/app/hooks/notes/useUpdateNote';
-import { useEditModalCursor } from 'src/app/hooks/useEditModalCursor';
+import { useEditModalCursor } from 'src/app/hooks/stores/useEditModalCursor';
 import ModalFrame, {
   ModalFrameProps,
 } from 'src/app/util/modal-frame/modal-frame';

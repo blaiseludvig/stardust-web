@@ -3,7 +3,7 @@ import { useNavigate } from '@tanstack/react-location';
 import { useRef } from 'react';
 import ReactTextareaAutosize from 'react-textarea-autosize';
 import { NoteData } from 'src/app/hooks/notes/useGetNotes';
-import { useEditModalCursor } from 'src/app/hooks/useEditModalCursor';
+import { useEditModalCursor } from 'src/app/hooks/stores/useEditModalCursor';
 import { LocationGenerics } from 'src/app/routes';
 
 import NoteActionButtons from '../note-action-buttons/note-action-buttons';
