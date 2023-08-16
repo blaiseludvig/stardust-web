@@ -33,7 +33,7 @@ export function App() {
     <QueryClientProvider client={queryClient}>
       <Router location={location} routes={routes}>
         <AuthContext.Provider value={{ isAuthenticated, setAuthenticated }}>
-          <div id="app" className="dark">
+          <div id="app">
             <Outlet />
           </div>
         </AuthContext.Provider>
