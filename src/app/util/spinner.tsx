@@ -6,7 +6,7 @@ export function Spinner(props: SpinnerProps) {
     <div className="flex h-full w-full items-center justify-center text-white">
       <svg
         aria-hidden="true"
-        className="mr-2 h-8 w-8 animate-spin fill-blue-600 dark:text-gray-700"
+        className="mr-2 h-8 w-8 animate-spin fill-blue-600 text-gray-700"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
