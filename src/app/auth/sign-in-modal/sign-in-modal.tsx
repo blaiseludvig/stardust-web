@@ -18,19 +18,17 @@ export function SignInModal(props: ModalFrameProps) {
   return (
     <ModalFrame hidden={props.hidden}>
       <div className="relative w-full max-w-md">
-        <div className="relative rounded-lg bg-white shadow dark:bg-gray-700">
+        <div className="relative rounded-lg bg-gray-700 shadow">
           <button
             onMouseDown={() => closeModal()}
             type="button"
-            className="absolute top-3 right-2.5 ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white"
+            className="absolute right-2.5 top-3 ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-800 hover:text-white"
           >
             <XMarkIcon className="h-6 w-6 text-gray-500" />
             <span className="sr-only">Close modal</span>
           </button>
           <div className="px-6 py-6 lg:px-8">
-            <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
-              Sign in
-            </h3>
+            <h3 className="mb-4 text-xl font-medium text-white">Sign in</h3>
             <form
               onSubmit={handleSubmit((data) => {
                 signIn(data.email, data.password);
@@ -42,14 +40,14 @@ export function SignInModal(props: ModalFrameProps) {
               <div>
                 <label
                   htmlFor="email"
-                  className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                  className="mb-2 block text-sm font-medium text-white"
                 >
                   Your email
                 </label>
                 <input
                   {...register('email')}
                   type="email"
-                  className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
+                  className="block w-full rounded-lg border border-gray-500 bg-gray-600 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                   placeholder=""
                   required
                 />
@@ -57,7 +55,7 @@ export function SignInModal(props: ModalFrameProps) {
               <div>
                 <label
                   htmlFor="password"
-                  className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                  className="mb-2 block text-sm font-medium text-white"
                 >
                   Your password
                 </label>
@@ -65,7 +63,7 @@ export function SignInModal(props: ModalFrameProps) {
                   {...register('password')}
                   type="password"
                   placeholder="••••••••"
-                  className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
+                  className="block w-full rounded-lg border border-gray-500 bg-gray-600 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                   required
                 />
               </div>
@@ -76,35 +74,29 @@ export function SignInModal(props: ModalFrameProps) {
                       id="remember"
                       type="checkbox"
                       value=""
-                      className="focus:ring-3 h-4 w-4 rounded border border-gray-300 bg-gray-50 focus:ring-blue-300 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-800 dark:focus:ring-blue-600 dark:focus:ring-offset-gray-800"
+                      className="focus:ring-3 h-4 w-4 rounded border border-gray-500 bg-gray-600 ring-offset-gray-800 focus:ring-blue-600 focus:ring-offset-gray-800"
                     />
                   </div>
                   <label
                     htmlFor="remember"
-                    className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    className="ml-2 text-sm font-medium text-gray-300"
                   >
                     Remember me
                   </label>
                 </div>
-                <a
-                  href="/"
-                  className="text-sm text-blue-700 hover:underline dark:text-blue-500"
-                >
+                <a href="/" className="text-sm text-blue-500 hover:underline">
                   Lost Password?
                 </a>
               </div>
               <button
                 type="submit"
-                className="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                className="w-full rounded-lg bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-800"
               >
                 Login to your account
               </button>
-              <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
+              <div className="text-sm font-medium text-gray-300">
                 Not registered?{' '}
-                <a
-                  href="/"
-                  className="text-blue-700 hover:underline dark:text-blue-500"
-                >
+                <a href="/" className="text-blue-500 hover:underline">
                   Sign up
                 </a>
               </div>
