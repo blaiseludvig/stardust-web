@@ -20,7 +20,7 @@ function NoteActionButton(props: NoteActionButtonProps) {
         }}
         type="button"
         className={clsx(
-          'inline-flex h-12 w-12 items-center rounded-full border-gray-200 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 dark:border-gray-600 dark:text-white dark:hover:bg-gray-600 dark:hover:text-white dark:focus:text-white',
+          'inline-flex h-12 w-12 items-center rounded-full text-sm font-medium focus:z-10 border-gray-600 text-white hover:bg-gray-600 hover:text-white focus:text-white',
           props.className
         )}
       >
