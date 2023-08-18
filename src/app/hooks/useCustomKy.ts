@@ -5,7 +5,7 @@ import ky, { AfterResponseHook, BeforeRequestHook } from 'ky';
 import { useSignIn } from './auth/useSignIn';
 import { useSignOut } from './auth/useSignOut';
 
-export function useApiKy() {
+export function useCustomKy() {
   const navigate = useNavigate();
   const { value: jwt } = useLocalStorageValue('api-auth-jwt');
   const signOut = useSignOut();

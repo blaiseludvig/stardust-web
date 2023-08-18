@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from 'react-query';
 
-import { useApiKy } from '../useApiKyi';
+import { useCustomKy } from '../useCustomKy';
 
 export function useEmptyBin() {
-  const myky = useApiKy();
+  const myky = useCustomKy();
   const queryClient = useQueryClient();
 
   return useMutation(

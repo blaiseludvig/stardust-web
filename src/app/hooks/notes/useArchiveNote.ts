@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from 'react-query';
 
-import { useApiKy } from '../useApiKyi';
+import { useCustomKy } from '../useCustomKy';
 
 export function useArchiveNote() {
-  const myky = useApiKy();
+  const myky = useCustomKy();
   const queryClient = useQueryClient();
 
   return useMutation(

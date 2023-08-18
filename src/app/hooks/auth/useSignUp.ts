@@ -1,7 +1,7 @@
-import { useApiKy } from '../useApiKyi';
+import { useCustomKy } from '../useCustomKy';
 
 export function useSignUp() {
-  const myky = useApiKy();
+  const myky = useCustomKy();
 
   return async (email: string, password: string) => {
     const response = await myky.post('auth/signup', {

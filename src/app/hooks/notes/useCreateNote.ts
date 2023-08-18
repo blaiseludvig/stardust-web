@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from 'react-query';
 
 import { CreateNoteDto } from '../../dto/create-note.dto';
-import { useApiKy } from '../useApiKyi';
+import { useCustomKy } from '../useCustomKy';
 
 export function useCreateNote() {
-  const myky = useApiKy();
+  const myky = useCustomKy();
   const queryClient = useQueryClient();
 
   return useMutation(

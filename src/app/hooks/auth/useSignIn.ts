@@ -2,10 +2,10 @@ import { useLocalStorageValue } from '@react-hookz/web';
 import { useContext } from 'react';
 import AuthContext from 'src/app/contexts/auth.context';
 
-import { useApiKy } from '../useApiKyi';
+import { useCustomKy } from '../useCustomKy';
 
 export function useSignIn() {
-  const myky = useApiKy();
+  const myky = useCustomKy();
   const { set: setJwt } = useLocalStorageValue('api-auth-jwt');
   const { setAuthenticated } = useContext(AuthContext);
 

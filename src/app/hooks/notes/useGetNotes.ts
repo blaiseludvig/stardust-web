@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { useQuery } from 'react-query';
 
 import AuthContext from '../../contexts/auth.context';
-import { useApiKy } from '../useApiKyi';
+import { useCustomKy } from '../useCustomKy';
 
 export interface NoteData {
   noteId: string;
@@ -20,7 +20,7 @@ export interface NoteData {
 export function useGetNotes() {
   const { isAuthenticated } = useContext(AuthContext);
 
-  const myky = useApiKy();
+  const myky = useCustomKy();
   return useQuery(
     'getNotes',
     async () => {
