@@ -1,12 +1,7 @@
-import { useLocalStorageValue } from '@react-hookz/web';
+import { getJwt } from 'src/app/util/lib/apiJwt';
 
 export function useIsSignedIn() {
-  const { value: jwt } = useLocalStorageValue('api-auth-jwt', {
-    defaultValue: '',
-  });
-  return () => {
-    if (jwt === '') {
-      return false;
-    } else return true;
-  };
+  const jwt = getJwt();
+
+  return () => (jwt ? true : false);
 }

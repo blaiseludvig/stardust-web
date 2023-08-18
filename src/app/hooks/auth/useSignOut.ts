@@ -1,13 +1,12 @@
-import { useLocalStorageValue } from '@react-hookz/web';
 import { useContext } from 'react';
 import AuthContext from 'src/app/contexts/auth.context';
+import { clearJwt } from 'src/app/util/lib/apiJwt';
 
 export function useSignOut() {
-  const { set: setJwt } = useLocalStorageValue('api-auth-jwt');
   const { setAuthenticated } = useContext(AuthContext);
 
   return () => {
-    setJwt('');
+    clearJwt();
     setAuthenticated(false);
   };
 }

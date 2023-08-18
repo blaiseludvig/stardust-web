@@ -1,10 +1,9 @@
-import { useLocalStorageValue } from '@react-hookz/web';
 import ky, { AfterResponseHook, BeforeRequestHook } from 'ky';
 
+import { getJwt } from '../util/lib/apiJwt';
 import { useSignOut } from './auth/useSignOut';
 
 export function useCustomKy() {
-  const { value: jwt } = useLocalStorageValue('api-auth-jwt');
   const signOut = useSignOut();
 
   const afterResponse: AfterResponseHook = async (
@@ -24,7 +23,7 @@ export function useCustomKy() {
   };
 
   const beforeRequest: BeforeRequestHook = (request) => {
-    request.headers.append('Authorization', `Bearer ${jwt}`);
+    request.headers.append('Authorization', `Bearer ${getJwt()}`);
   };
 
   const apiRoot = ky.create({
