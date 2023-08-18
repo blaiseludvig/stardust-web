@@ -16,6 +16,12 @@ export function useApiKy() {
     response
   ) => {
     if (response.status === 401) {
+      // TODO: Implement unauthorized message
+      signOut();
+    }
+
+    if (response.status === 410) {
+      // TODO: Implement user account deleted message
       signOut();
     }
   };
