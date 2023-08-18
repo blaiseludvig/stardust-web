@@ -5,13 +5,10 @@ import {
   createBrowserHistory,
 } from '@tanstack/react-location';
 import 'flowbite';
-import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import styles from './app.module.scss';
-import AuthContext from './contexts/auth.context';
-import { useIsSignedIn } from './hooks/auth/useIsSignedIn';
 import { LocationGenerics, routes } from './routes';
 
 const queryClient = new QueryClient({
@@ -26,17 +23,12 @@ const history = createBrowserHistory();
 const location = new ReactLocation<LocationGenerics>({ history });
 
 export function App() {
-  const isSignedIn = useIsSignedIn();
-  const [isAuthenticated, setAuthenticated] = useState(isSignedIn());
-
   return (
     <QueryClientProvider client={queryClient}>
       <Router location={location} routes={routes}>
-        <AuthContext.Provider value={{ isAuthenticated, setAuthenticated }}>
-          <div id="app">
-            <Outlet />
-          </div>
-        </AuthContext.Provider>
+        <div id="app">
+          <Outlet />
+        </div>
       </Router>
     </QueryClientProvider>
   );

@@ -1,6 +1,6 @@
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import { useForm } from 'react-hook-form';
-import { useSignIn } from 'src/app/hooks/auth/useSignIn';
+import { useAuth } from 'src/app/hooks/stores/useAuth';
 import { useCloseModal } from 'src/app/hooks/useCloseModal';
 import ModalFrame, {
   ModalFrameProps,
@@ -8,7 +8,7 @@ import ModalFrame, {
 
 export function SignInModal(props: ModalFrameProps) {
   const closeModal = useCloseModal();
-  const signIn = useSignIn();
+  const signIn = useAuth((state) => state.signIn);
 
   const { register, handleSubmit } = useForm<{
     email: string;

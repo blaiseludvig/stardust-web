@@ -2,8 +2,7 @@ import { ExclamationCircleIcon, EyeIcon } from '@heroicons/react/24/outline';
 import { EyeSlashIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import { useToggle } from '@react-hookz/web';
 import { useForm } from 'react-hook-form';
-import { useSignIn } from 'src/app/hooks/auth/useSignIn';
-import { useSignUp } from 'src/app/hooks/auth/useSignUp';
+import { useAuth } from 'src/app/hooks/stores/useAuth';
 import { useCloseModal } from 'src/app/hooks/useCloseModal';
 import { extractNestedProperties } from 'src/app/util/lib/extractNestedProperties';
 import ModalFrame, {
@@ -12,8 +11,8 @@ import ModalFrame, {
 
 export function SignUpModal(props: ModalFrameProps) {
   const closeModal = useCloseModal();
-  const signUp = useSignUp();
-  const signIn = useSignIn();
+  const signUp = useAuth((state) => state.signUp);
+  const signIn = useAuth((state) => state.signIn);
 
   const [isPasswordVisible, togglePasswordVisible] = useToggle(false);
   const [isPasswordConfirmationVisible, togglePasswordConfirmationVisible] =

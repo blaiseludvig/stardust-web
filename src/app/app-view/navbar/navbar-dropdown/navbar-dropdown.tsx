@@ -1,7 +1,6 @@
 import { Link, useNavigate } from '@tanstack/react-location';
 import { useRef } from 'react';
-import { useIsSignedIn } from 'src/app/hooks/auth/useIsSignedIn';
-import { useSignOut } from 'src/app/hooks/auth/useSignOut';
+import { useAuth } from 'src/app/hooks/stores/useAuth';
 import { useGetProfile } from 'src/app/hooks/useGetProfile';
 import DropdownFrame, {
   DropdownFrameHandle,
@@ -13,15 +12,15 @@ export interface NavbarDropdownProps {
 
 export function NavbarDropdown(props: NavbarDropdownProps) {
   const navigate = useNavigate();
-  const isSignedIn = useIsSignedIn();
+  const isAuthenticated = useAuth((state) => state.isAuthenticated);
 
   const { isLoading, isError, data: userData, error } = useGetProfile();
 
   const dropdownFrameHandle = useRef<DropdownFrameHandle>(null);
 
-  const signOut = useSignOut();
+  const signOut = useAuth((state) => state.signOut);
 
-  if (!isSignedIn()) {
+  if (!isAuthenticated) {
     return (
       <DropdownFrame
         ref={dropdownFrameHandle}

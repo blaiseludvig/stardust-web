@@ -1,10 +1,9 @@
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { useNavigate } from '@tanstack/react-location';
 import clsx from 'clsx';
-import { useContext } from 'react';
 import { TbCross } from 'react-icons/tb';
-import AuthContext from 'src/app/contexts/auth.context';
 import { useTalkToGod } from 'src/app/hooks/notes/useTalkToGod';
+import { useAuth } from 'src/app/hooks/stores/useAuth';
 import { LocationGenerics } from 'src/app/routes';
 import SpeedDial from 'src/app/util/speed-dial/speed-dial';
 import Tooltip from 'src/app/util/tooltip/tooltip';
@@ -15,7 +14,7 @@ export interface NotesDialProps {}
 export function NotesDial(props: NotesDialProps) {
   const navigate = useNavigate<LocationGenerics>();
   const { mutate: talkToGod } = useTalkToGod();
-  const { isAuthenticated } = useContext(AuthContext);
+  const isAuthenticated = useAuth((state) => state.isAuthenticated);
 
   return (
     <SpeedDial

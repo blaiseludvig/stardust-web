@@ -1,8 +1,7 @@
-import { useContext } from 'react';
 import { useQuery } from 'react-query';
 import { getCustomKy } from 'src/app/util/lib/getCustomKy';
 
-import AuthContext from '../../contexts/auth.context';
+import { useAuth } from '../stores/useAuth';
 
 export interface NoteData {
   noteId: string;
@@ -18,7 +17,7 @@ export interface NoteData {
 }
 
 export function useGetNotes() {
-  const { isAuthenticated } = useContext(AuthContext);
+  const isAuthenticated = useAuth((state) => state.isAuthenticated);
 
   const myky = getCustomKy();
   return useQuery(

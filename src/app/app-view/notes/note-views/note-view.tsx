@@ -1,7 +1,7 @@
-import { ReactNode, useContext } from 'react';
+import { ReactNode } from 'react';
 import Masonry from 'react-masonry-css';
-import AuthContext from 'src/app/contexts/auth.context';
 import { NoteData, useGetNotes } from 'src/app/hooks/notes/useGetNotes';
+import { useAuth } from 'src/app/hooks/stores/useAuth';
 import Spinner from 'src/app/util/spinner';
 
 import NoteCard from '../note-card/note-card';
@@ -16,7 +16,7 @@ export interface NoteViewProps {
 
 function NoteView(props: React.PropsWithChildren<NoteViewProps>) {
   const { isLoading, isError, error } = useGetNotes();
-  const { isAuthenticated } = useContext(AuthContext);
+  const isAuthenticated = useAuth((state) => state.isAuthenticated);
 
   if (!isAuthenticated) {
     return <Unauthenticated />;

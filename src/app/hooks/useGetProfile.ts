@@ -1,8 +1,6 @@
-import { useContext } from 'react';
 import { useQuery } from 'react-query';
 
-import AuthContext from '../contexts/auth.context';
-import { useSignOut } from './auth/useSignOut';
+import { useAuth } from './stores/useAuth';
 import { getCustomKy } from '../util/lib/getCustomKy';
 
 export interface UserProfile {
@@ -11,8 +9,8 @@ export interface UserProfile {
 }
 
 export function useGetProfile() {
-  const { isAuthenticated } = useContext(AuthContext);
-  const signOut = useSignOut();
+  const isAuthenticated = useAuth((state) => state.isAuthenticated);
+  const signOut = useAuth((state) => state.signOut);
 
   const myky = getCustomKy();
   return useQuery(
