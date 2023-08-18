@@ -1,12 +1,9 @@
 import { useLocalStorageValue } from '@react-hookz/web';
-import { useNavigate } from '@tanstack/react-location';
 import ky, { AfterResponseHook, BeforeRequestHook } from 'ky';
 
-import { useSignIn } from './auth/useSignIn';
 import { useSignOut } from './auth/useSignOut';
 
 export function useCustomKy() {
-  const navigate = useNavigate();
   const { value: jwt } = useLocalStorageValue('api-auth-jwt');
   const signOut = useSignOut();
 
@@ -27,7 +24,6 @@ export function useCustomKy() {
   };
 
   const beforeRequest: BeforeRequestHook = (request) => {
-    const header = request.headers.get('Authorization');
     request.headers.append('Authorization', `Bearer ${jwt}`);
   };
 
