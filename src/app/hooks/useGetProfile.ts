@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 
 import AuthContext from '../contexts/auth.context';
 import { useSignOut } from './auth/useSignOut';
-import { useCustomKy } from './useCustomKy';
+import { getCustomKy } from '../util/lib/getCustomKy';
 
 export interface UserProfile {
   email: string;
@@ -14,7 +14,7 @@ export function useGetProfile() {
   const { isAuthenticated } = useContext(AuthContext);
   const signOut = useSignOut();
 
-  const myky = useCustomKy();
+  const myky = getCustomKy();
   return useQuery(
     'getProfile',
     async () => {

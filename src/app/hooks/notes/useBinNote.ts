@@ -1,9 +1,8 @@
 import { useMutation, useQueryClient } from 'react-query';
-
-import { useCustomKy } from '../useCustomKy';
+import { getCustomKy } from 'src/app/util/lib/getCustomKy';
 
 export function useBinNote() {
-  const myky = useCustomKy();
+  const myky = getCustomKy();
   const queryClient = useQueryClient();
 
   return useMutation(

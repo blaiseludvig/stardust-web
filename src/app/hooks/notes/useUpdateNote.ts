@@ -1,10 +1,9 @@
 import { useMutation, useQueryClient } from 'react-query';
 import { UpdateNoteDto } from 'src/app/dto/update-note.dto';
-
-import { useCustomKy } from '../useCustomKy';
+import { getCustomKy } from 'src/app/util/lib/getCustomKy';
 
 export function useUpdateNote() {
-  const myky = useCustomKy();
+  const myky = getCustomKy();
   const queryClient = useQueryClient();
 
   return useMutation(
