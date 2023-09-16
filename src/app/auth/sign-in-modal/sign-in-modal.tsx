@@ -1,9 +1,11 @@
 import { EyeIcon } from '@heroicons/react/24/outline';
 import { EyeSlashIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import { useToggle } from '@react-hookz/web';
+import { useNavigate } from '@tanstack/react-location';
 import { useForm } from 'react-hook-form';
 import { useAuth } from 'src/app/hooks/stores/useAuth';
 import { useCloseModal } from 'src/app/hooks/useCloseModal';
+import { LocationGenerics } from 'src/app/routes';
 import ModalFrame, {
   ModalFrameProps,
 } from 'src/app/util/modal-frame/modal-frame';
@@ -11,6 +13,7 @@ import ModalFrame, {
 export function SignInModal(props: ModalFrameProps) {
   const closeModal = useCloseModal();
   const signIn = useAuth((state) => state.signIn);
+  const navigate = useNavigate<LocationGenerics>();
 
   const [isPasswordVisible, togglePasswordVisible] = useToggle(false);
 
@@ -119,9 +122,14 @@ export function SignInModal(props: ModalFrameProps) {
               </button>
               <div className="text-sm font-medium text-gray-300">
                 Not registered?{' '}
-                <a href="/" className="text-blue-500 hover:underline">
+                <button
+                  onMouseDown={() =>
+                    navigate({ search: () => ({ modal: 'signup' }) })
+                  }
+                  className="text-blue-500 hover:underline"
+                >
                   Sign up
-                </a>
+                </button>
               </div>
             </form>
           </div>
