@@ -1,4 +1,6 @@
-import { XMarkIcon } from '@heroicons/react/24/solid';
+import { EyeIcon } from '@heroicons/react/24/outline';
+import { EyeSlashIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import { useToggle } from '@react-hookz/web';
 import { useForm } from 'react-hook-form';
 import { useAuth } from 'src/app/hooks/stores/useAuth';
 import { useCloseModal } from 'src/app/hooks/useCloseModal';
@@ -9,6 +11,8 @@ import ModalFrame, {
 export function SignInModal(props: ModalFrameProps) {
   const closeModal = useCloseModal();
   const signIn = useAuth((state) => state.signIn);
+
+  const [isPasswordVisible, togglePasswordVisible] = useToggle(false);
 
   const { register, handleSubmit } = useForm<{
     email: string;
@@ -59,13 +63,31 @@ export function SignInModal(props: ModalFrameProps) {
                 >
                   Your password
                 </label>
-                <input
-                  {...register('password')}
-                  type="password"
-                  placeholder="••••••••"
-                  className="block w-full rounded-lg border border-gray-500 bg-gray-600 p-2.5 text-sm text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
-                  required
-                />
+                <div className="flex w-full items-center rounded-lg border border-gray-500 bg-gray-600 pr-2.5 text-sm text-white placeholder-gray-400 focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
+                  <input
+                    {...register('password', {
+                      required: 'Please type in your password',
+                      deps: ['confirmPassword'],
+                    })}
+                    type={isPasswordVisible ? 'text' : 'password'}
+                    className="block w-full rounded-lg border-none bg-gray-600 p-2.5 text-sm text-white placeholder-gray-400 focus:ring-0"
+                  />
+                  <div
+                    tabIndex={0}
+                    onMouseDown={() => togglePasswordVisible()}
+                    onKeyDown={(e) => {
+                      if (e.code === 'Space' || e.code === 'Enter') {
+                        togglePasswordVisible();
+                      }
+                    }}
+                  >
+                    {isPasswordVisible ? (
+                      <EyeIcon className="h-6 w-6 cursor-pointer text-gray-500" />
+                    ) : (
+                      <EyeSlashIcon className="h-6 w-6 cursor-pointer text-gray-500" />
+                    )}
+                  </div>
+                </div>
               </div>
               <div className="flex justify-between">
                 <div className="flex items-start">
