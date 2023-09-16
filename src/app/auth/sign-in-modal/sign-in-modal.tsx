@@ -89,7 +89,8 @@ export function SignInModal(props: ModalFrameProps) {
                   </div>
                 </div>
               </div>
-              <div className="flex justify-between">
+              {/* TODO: Implement these features on the backend first */}
+              {/* <div className="flex justify-between">
                 <div className="flex items-start">
                   <div className="flex h-5 items-center">
                     <input
@@ -109,7 +110,7 @@ export function SignInModal(props: ModalFrameProps) {
                 <a href="/" className="text-sm text-blue-500 hover:underline">
                   Lost Password?
                 </a>
-              </div>
+              </div> */}
               <button
                 type="submit"
                 className="w-full rounded-lg bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-800"
