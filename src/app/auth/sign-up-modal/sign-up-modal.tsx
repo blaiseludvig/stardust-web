@@ -181,8 +181,9 @@ export function SignUpModal(props: ModalFrameProps) {
               >
                 Sign up
               </button>
-
-              <div>
+            </form>
+            {Object.keys(formState.errors).length > 0 && (
+              <div className="mt-4">
                 {extractNestedProperties(
                   formState.errors,
                   'message',
@@ -196,7 +197,7 @@ export function SignUpModal(props: ModalFrameProps) {
                   </div>
                 ))}
               </div>
-            </form>
+            )}
           </div>
         </div>
       </div>
