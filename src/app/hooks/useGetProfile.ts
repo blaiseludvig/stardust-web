@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 
-import { useAuth } from './stores/useAuth';
 import { getCustomKy } from '../util/lib/getCustomKy';
+import { useAuth } from './stores/useAuth';
 
 export interface UserProfile {
   email: string;

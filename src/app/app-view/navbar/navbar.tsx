@@ -53,7 +53,7 @@ export function Navbar(props: NavbarProps) {
               <div className="flex flex-row">
                 <button
                   type="button"
-                  className="flex rounded-full bg-gray-800 text-sm hover:ring-[5px] hover:ring-gray-600 focus:ring-[7px] focus:ring-gray-500 transition ease-in-out duration-300"
+                  className="flex rounded-full bg-gray-800 text-sm transition duration-300 ease-in-out hover:ring-[5px] hover:ring-gray-600 focus:ring-[7px] focus:ring-gray-500"
                   ref={buttonRef}
                 >
                   <span className="sr-only">Open user menu</span>

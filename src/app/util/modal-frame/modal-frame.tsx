@@ -43,7 +43,7 @@ function ModalFrame(props: React.PropsWithChildren<ModalFrameProps>) {
             closeModal();
           }
         }}
-        className="absolute top-0 left-0 right-0 z-[110] flex h-[calc(100%-1rem)] w-full items-center justify-center overflow-y-auto overflow-x-hidden p-4 md:inset-0 md:h-full"
+        className="absolute left-0 right-0 top-0 z-[110] flex h-[calc(100%-1rem)] w-full items-center justify-center overflow-y-auto overflow-x-hidden p-4 md:inset-0 md:h-full"
       >
         {props.children}
       </div>

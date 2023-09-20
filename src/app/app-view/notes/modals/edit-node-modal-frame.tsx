@@ -112,7 +112,7 @@ function EditNoteModalFrame(props: EditNoteModalFrameProps) {
             });
           }
         })}
-        className="relative block max-w-3xl break-words rounded-lg border p-6 pb-16 shadow border-gray-700 bg-gray-800"
+        className="relative block max-w-3xl break-words rounded-lg border border-gray-700 bg-gray-800 p-6 pb-16 shadow"
       >
         {(() => {
           const { ref: formTitleRef, ...rest } = register('title');

@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from 'react-query';
+import { router } from 'src/app/routes';
 import { getCustomKy } from 'src/app/util/lib/getCustomKy';
 
 import { useCloseModal } from '../useCloseModal';
-import { router } from 'src/app/routes';
 
 export function useUnarchiveNote() {
   const myky = getCustomKy();
