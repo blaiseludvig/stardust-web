@@ -1,6 +1,5 @@
-import { useSearch } from '@tanstack/react-location';
+import { useSearch } from '@tanstack/react-router';
 import { useGetNotes } from 'src/app/hooks/notes/useGetNotes';
-import { LocationGenerics } from 'src/app/routes';
 import ModalFrame, {
   ModalFrameProps,
 } from 'src/app/util/modal-frame/modal-frame';
@@ -9,7 +8,7 @@ import Spinner from 'src/app/util/spinner';
 import EditNoteModalFrame from './edit-node-modal-frame';
 
 export function EditNoteModal(props: ModalFrameProps) {
-  const search = useSearch<LocationGenerics>();
+  const search = useSearch({ from: '/' });
 
   const { data: notes, isLoading, isError, error } = useGetNotes();
 

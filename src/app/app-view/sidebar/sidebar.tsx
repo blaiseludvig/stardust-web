@@ -7,7 +7,7 @@ import {
   TrashIcon,
 } from '@heroicons/react/24/outline';
 import { ChartPieIcon } from '@heroicons/react/24/solid';
-import { useNavigate } from '@tanstack/react-location';
+import { useNavigate } from '@tanstack/react-router';
 import clsx from 'clsx';
 import React, { forwardRef, useImperativeHandle, useRef } from 'react';
 import DrawerFrame, {
@@ -67,7 +67,7 @@ export const Sidebar = forwardRef<
           <SidebarItem
             text="All notes"
             icon={<CubeIcon className="h-6 w-6 text-gray-500" />}
-            onMouseDown={() => navigate({ to: 'notes' })}
+            onMouseDown={() => navigate({ to: '/all' })}
           />
 
           {true && (
@@ -104,13 +104,13 @@ export const Sidebar = forwardRef<
           <SidebarItem
             text="Archive"
             icon={<ArchiveBoxArrowDownIcon className="h-6 w-6 text-gray-500" />}
-            onMouseDown={() => navigate({ to: 'archive' })}
+            onMouseDown={() => navigate({ to: '/archive' })}
           />
 
           <SidebarItem
             text="Bin"
             icon={<TrashIcon className="h-6 w-6 text-gray-500" />}
-            onMouseDown={() => navigate({ to: 'bin' })}
+            onMouseDown={() => navigate({ to: '/bin' })}
           />
         </ul>
       </div>

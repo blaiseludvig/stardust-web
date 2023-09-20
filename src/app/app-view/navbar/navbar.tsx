@@ -1,5 +1,5 @@
 import { UserCircleIcon } from '@heroicons/react/24/solid';
-import { Link } from '@tanstack/react-location';
+import { Link } from '@tanstack/react-router';
 import { useRef } from 'react';
 
 import { SidebarHandle } from '../sidebar/sidebar';

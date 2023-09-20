@@ -1,4 +1,4 @@
-import { Link } from '@tanstack/react-location';
+import { Link } from "@tanstack/react-router";
 
 /* eslint-disable-next-line */
 export interface NotFoundPageProps {}

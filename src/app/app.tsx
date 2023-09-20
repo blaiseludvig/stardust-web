@@ -1,15 +1,10 @@
-import {
-  Outlet,
-  ReactLocation,
-  Router,
-  createBrowserHistory,
-} from '@tanstack/react-location';
+import { RouterProvider } from '@tanstack/react-router';
 import 'flowbite';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import styles from './app.module.scss';
-import { LocationGenerics, routes } from './routes';
+import { router } from './routes';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,17 +14,12 @@ const queryClient = new QueryClient({
   },
 });
 
-const history = createBrowserHistory();
-const location = new ReactLocation<LocationGenerics>({ history });
-
 export function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Router location={location} routes={routes}>
-        <div id="app">
-          <Outlet />
-        </div>
-      </Router>
+      <div id="app">
+        <RouterProvider router={router} />
+      </div>
     </QueryClientProvider>
   );
 }

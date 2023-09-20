@@ -1,4 +1,4 @@
-import { useNavigate } from '@tanstack/react-location';
+import { useNavigate } from '@tanstack/react-router';
 
 export function ZeroNotes() {
   const navigate = useNavigate();

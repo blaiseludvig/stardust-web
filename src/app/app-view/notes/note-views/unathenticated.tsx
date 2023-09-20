@@ -1,8 +1,7 @@
-import { useNavigate } from '@tanstack/react-location';
-import { LocationGenerics } from 'src/app/routes';
+import { useNavigate } from '@tanstack/react-router';
 
 export function Unauthenticated() {
-  const navigate = useNavigate<LocationGenerics>();
+  const navigate = useNavigate();
   return (
     <div className="flex h-full w-full items-center justify-center">
       <div className="flex w-full flex-col items-center gap-y-4">

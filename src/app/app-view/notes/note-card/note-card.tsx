@@ -1,10 +1,9 @@
 import { useToggle, useWindowSize } from '@react-hookz/web';
-import { useNavigate } from '@tanstack/react-location';
+import { useNavigate } from '@tanstack/react-router';
 import { useRef } from 'react';
 import ReactTextareaAutosize from 'react-textarea-autosize';
 import { NoteData } from 'src/app/hooks/notes/useGetNotes';
 import { useEditModalCursor } from 'src/app/hooks/stores/useEditModalCursor';
-import { LocationGenerics } from 'src/app/routes';
 
 import NoteActionButtons from '../note-action-buttons/note-action-buttons';
 
@@ -29,7 +28,7 @@ export function NoteCard(props: NoteCardProps) {
   /* eslint-enable @typescript-eslint/no-unused-vars */
 
   const [showActionButtons, toggleShowActionButtons] = useToggle(false);
-  const navigate = useNavigate<LocationGenerics>();
+  const navigate = useNavigate();
 
   const editModalCursor = useEditModalCursor();
   const titleRef = useRef<HTMLTextAreaElement>(null);

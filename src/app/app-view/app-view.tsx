@@ -4,7 +4,7 @@ import {
   Outlet,
   useNavigate,
   useSearch,
-} from '@tanstack/react-location';
+} from '@tanstack/react-router';
 import clsx from 'clsx';
 import 'flowbite';
 import { initFlowbite } from 'flowbite';
@@ -12,7 +12,6 @@ import { useRef } from 'react';
 
 import { SignInModal } from '../auth/sign-in-modal/sign-in-modal';
 import SignUpModal from '../auth/sign-up-modal/sign-up-modal';
-import { LocationGenerics } from '../routes';
 import styles from './app-view.module.scss';
 import Navbar from './navbar/navbar';
 import EditNoteModal from './notes/modals/edit-note-modal';
@@ -24,8 +23,8 @@ import Sidebar, { SidebarHandle } from './sidebar/sidebar';
 export interface AppViewProps {}
 
 export function AppView(props: AppViewProps) {
-  const search = useSearch<LocationGenerics>();
-  const navigate = useNavigate<LocationGenerics>();
+  const search = useSearch({ from: '/' });
+  const navigate = useNavigate();
 
   const noteContainerRef = useRef<HTMLDivElement>(null);
   const sidebarHandle = useRef<SidebarHandle>(null);
@@ -53,7 +52,7 @@ export function AppView(props: AppViewProps) {
       >
         <Outlet />
 
-        <MatchRoute to="notes">
+        <MatchRoute to="all">
           <NotesDial />
         </MatchRoute>
       </div>

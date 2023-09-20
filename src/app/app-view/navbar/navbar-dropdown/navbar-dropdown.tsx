@@ -1,4 +1,4 @@
-import { Link, useNavigate } from '@tanstack/react-location';
+import { Link, useNavigate } from '@tanstack/react-router';
 import { useRef } from 'react';
 import { useAuth } from 'src/app/hooks/stores/useAuth';
 import { useGetProfile } from 'src/app/hooks/useGetProfile';
@@ -72,7 +72,7 @@ export function NavbarDropdown(props: NavbarDropdownProps) {
       <ul className="py-1" role="none">
         <li>
           <Link
-            to={'settings'}
+            to={'/'}
             className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-600 hover:text-white"
             role="menuitem"
           >
