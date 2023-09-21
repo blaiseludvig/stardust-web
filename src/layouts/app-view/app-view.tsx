@@ -26,7 +26,6 @@ export function AppView(props: AppViewProps) {
   const search = useSearch({ from: '/' });
   const navigate = useNavigate();
 
-  const noteContainerRef = useRef<HTMLDivElement>(null);
   const sidebarHandle = useRef<SidebarHandle>(null);
 
   useMountEffect(() => {
@@ -44,7 +43,6 @@ export function AppView(props: AppViewProps) {
       />
 
       <div
-        ref={noteContainerRef}
         className={clsx(
           styles['notes-container'],
           'mt-14 h-[calc(100%-3.5rem)] w-full overflow-y-scroll bg-slate-600 px-4 pt-4'
