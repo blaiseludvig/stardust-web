@@ -6,6 +6,8 @@ import DropdownFrame, {
   DropdownFrameHandle,
 } from 'src/lib/components/dropdown-frame';
 
+import { layoutContext } from '../layoutContext';
+
 export interface NavbarDropdownProps {
   trigger: React.RefObject<HTMLElement>;
 }
@@ -23,9 +25,10 @@ export function NavbarDropdown(props: NavbarDropdownProps) {
   if (!isAuthenticated) {
     return (
       <DropdownFrame
+        style={{ zIndex: layoutContext.navbarDropdownZindex }}
         ref={dropdownFrameHandle}
         trigger={props.trigger}
-        className="z-50 hidden list-none divide-y divide-gray-600 rounded bg-gray-700 text-base shadow"
+        className="hidden list-none divide-y divide-gray-600 rounded bg-gray-700 text-base shadow"
       >
         <div className="px-4 py-3" role="none">
           <p className="text-sm text-white" role="none">
@@ -60,9 +63,10 @@ export function NavbarDropdown(props: NavbarDropdownProps) {
 
   return (
     <DropdownFrame
+      style={{ zIndex: layoutContext.navbarDropdownZindex }}
       ref={dropdownFrameHandle}
       trigger={props.trigger}
-      className="z-50 hidden list-none divide-y divide-gray-600 rounded bg-gray-700 text-base shadow"
+      className="hidden list-none divide-y divide-gray-600 rounded bg-gray-700 text-base shadow"
     >
       <div className="px-4 py-3" role="none">
         <p className="text-sm text-white" role="none">

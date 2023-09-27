@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useCloseModal } from 'src/hooks/useCloseModal';
+import { layoutContext } from 'src/layouts/layoutContext';
 
 export interface ModalFrameProps {
   hidden: boolean;
@@ -28,9 +29,10 @@ function ModalFrame(props: React.PropsWithChildren<ModalFrameProps>) {
 
   return createPortal(
     <div
+      style={{ zIndex: layoutContext.modalBackdropZindex }}
       className={clsx(
         props.hidden && 'translate-y-full opacity-0',
-        'fixed inset-0 z-[100] bg-gray-900 bg-opacity-80 backdrop-blur-[1.5px] transition-opacity'
+        'fixed inset-0 bg-gray-900 bg-opacity-80 backdrop-blur-[1.5px] transition-opacity'
       )}
     >
       <div
@@ -43,7 +45,8 @@ function ModalFrame(props: React.PropsWithChildren<ModalFrameProps>) {
             closeModal();
           }
         }}
-        className="absolute left-0 right-0 top-0 z-[110] flex h-[calc(100%-1rem)] w-full items-center justify-center overflow-y-auto overflow-x-hidden p-4 md:inset-0 md:h-full"
+        style={{ zIndex: layoutContext.modalFrameZindex }}
+        className="absolute left-0 right-0 top-0 flex h-[calc(100%-1rem)] w-full items-center justify-center overflow-y-auto overflow-x-hidden p-4 md:inset-0 md:h-full"
       >
         {props.children}
       </div>

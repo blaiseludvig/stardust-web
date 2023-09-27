@@ -4,6 +4,7 @@ import {
   Dropdown as FlowbiteDropdown,
 } from 'flowbite';
 import {
+  CSSProperties,
   forwardRef,
   useImperativeHandle,
   useLayoutEffect,
@@ -22,6 +23,7 @@ export type DropdownFrameHandle = {
 export interface DropdownFrameProps extends DropdownOptions {
   trigger: React.RefObject<HTMLElement>;
   className?: string;
+  style?: CSSProperties;
 }
 
 export const DropdownFrame = forwardRef<
@@ -54,7 +56,7 @@ export const DropdownFrame = forwardRef<
   });
 
   return (
-    <div ref={containerRef} className={props.className}>
+    <div style={props.style} ref={containerRef} className={props.className}>
       {props.children}
     </div>
   );

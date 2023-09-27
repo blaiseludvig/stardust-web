@@ -2,6 +2,7 @@ import { Tooltip as FlowbiteTooltip } from 'flowbite';
 import { TooltipInterface, TooltipOptions } from 'flowbite';
 import { ReactNode, RefObject, useLayoutEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import { layoutContext } from 'src/layouts/layoutContext';
 import { match } from 'ts-pattern';
 
 export type placementTypes = 'top' | 'right' | 'bottom' | 'left';
@@ -40,7 +41,8 @@ function Tooltip(props: TooltipProps) {
     <div
       ref={containerRef}
       role="tooltip"
-      className="tooltip invisible absolute z-10 inline-block w-max rounded-lg bg-gray-700 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300"
+      style={{ zIndex: layoutContext.tooltipZindex }}
+      className="tooltip invisible absolute inline-block w-max rounded-lg bg-gray-700 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300"
     >
       {props.text}
       {props.useArrow && (
