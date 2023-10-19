@@ -21,3 +21,17 @@ textarea:focus {
   -webkit-appearance: none;
   box-shadow: none;
 }
+
+.muuri-item-dragging {
+  > div > div {
+    @apply scale-105 ring-4 ring-blue-500 transition-transform ease-in-out;
+  }
+
+  * {
+    @apply cursor-grabbing;
+  }
+}
+
+.ruuri-draggable-item.draggable-item {
+  cursor: default;
+}

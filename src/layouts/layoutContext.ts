@@ -11,4 +11,5 @@ export const layoutContext = {
   navbarZindex: 100,
   sidebarZindex: 50,
   drawerBackdropZindex: 40,
+  notesDialZindex: 30,
 } as const;

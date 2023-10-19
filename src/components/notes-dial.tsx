@@ -2,10 +2,11 @@ import { PlusIcon } from '@heroicons/react/24/outline';
 import { useNavigate } from '@tanstack/react-router';
 import clsx from 'clsx';
 import { TbCross } from 'react-icons/tb';
-import SpeedDial from 'src/lib/components/speed-dial/speed-dial';
-import Tooltip from 'src/lib/components/tooltip';
 import { useAuth } from 'src/features/auth/useAuth';
 import { useTalkToGod } from 'src/features/note-management/hooks/useTalkToGod';
+import { layoutContext } from 'src/layouts/layoutContext';
+import SpeedDial from 'src/lib/components/speed-dial/speed-dial';
+import Tooltip from 'src/lib/components/tooltip';
 
 /* eslint-disable-next-line */
 export interface NotesDialProps {}
@@ -20,6 +21,7 @@ export function NotesDial(props: NotesDialProps) {
       tooltipPlacement="left"
       triggerType="hover"
       pinnable
+      style={{ zIndex: layoutContext.notesDialZindex }}
       className={clsx(
         !isAuthenticated && 'invisible',
         'fixed bottom-6 right-6'

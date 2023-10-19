@@ -14,6 +14,7 @@ export interface SpeedDialProps {
   expanded?: boolean;
   pinnable?: boolean;
   pinned?: boolean;
+  style?: React.CSSProperties;
   className?: string;
 }
 
@@ -40,6 +41,7 @@ function SpeedDial(props: React.PropsWithChildren<SpeedDialProps>) {
     >
       <div
         ref={containerRef}
+        style={props.style}
         className={clsx(props.className, 'isolate')}
         onMouseLeave={
           props.triggerType === 'hover' && !isPinned

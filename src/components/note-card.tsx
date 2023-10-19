@@ -1,5 +1,6 @@
 import { useToggle, useWindowSize } from '@react-hookz/web';
 import { useNavigate } from '@tanstack/react-router';
+import clsx from 'clsx';
 import { useRef } from 'react';
 import ReactTextareaAutosize from 'react-textarea-autosize';
 import { NoteData } from 'src/features/note-management/hooks/useGetNotes';
@@ -9,6 +10,7 @@ import NoteActionButtons from './note-action-buttons/note-action-buttons';
 
 export interface NoteCardProps {
   data: NoteData;
+  className?: string;
 }
 
 export function NoteCard(props: NoteCardProps) {
@@ -38,14 +40,24 @@ export function NoteCard(props: NoteCardProps) {
 
   return (
     <div
-      onMouseDown={() =>
-        navigate({
-          search: (old) => ({ ...old, modal: 'edit-note', editNote: noteId }),
-        })
+      onMouseDown={
+        windowSize.width < 768
+          ? () =>
+              navigate({
+                search: (old) => ({
+                  ...old,
+                  modal: 'edit-note',
+                  editNote: noteId,
+                }),
+              })
+          : undefined
       }
-      className="relative block break-words rounded-lg border border-gray-700 bg-gray-800 p-6 pb-16 shadow hover:bg-gray-700"
       onMouseOver={() => toggleShowActionButtons(true)}
       onMouseOut={() => toggleShowActionButtons(false)}
+      className={clsx(
+        'break-words rounded-lg border border-gray-700 bg-gray-800 p-6 pb-16 shadow hover:bg-gray-700',
+        props.className
+      )}
     >
       <div
         // I want o be able to use line-clamp with the ellipsis, and the

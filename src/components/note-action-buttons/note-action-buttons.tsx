@@ -1,7 +1,9 @@
+import { useWindowSize } from '@react-hookz/web';
 import { NoteData } from 'src/features/note-management/hooks/useGetNotes';
 
 import ArchiveButton from './archive-button';
 import BinOrDeleteButton from './bin-or-delete-button';
+import CardDragButton from './card-drag-button';
 import MenuButton from './menu-button';
 import NoteActionButtonFrame, {
   NoteActionButtonFrameProps,
@@ -13,6 +15,7 @@ interface NoteActionButtonProps
 }
 
 function NoteActionButtons({ noteData, hidden }: NoteActionButtonProps) {
+  const windowSize = useWindowSize();
 
   if (!noteData) {
     return null;
@@ -21,6 +24,7 @@ function NoteActionButtons({ noteData, hidden }: NoteActionButtonProps) {
   return (
     <NoteActionButtonFrame
       hidden={hidden}
+      leftButtons={[windowSize.width < 768 && <CardDragButton />]}
       rightButtons={[
         <BinOrDeleteButton noteData={noteData} />,
         <ArchiveButton noteData={noteData} />,
