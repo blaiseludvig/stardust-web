@@ -8,6 +8,9 @@ body,
 #root,
 #app {
   height: 100%;
+  // this fixes a bug where if you keep scrolling downwards in a
+  // overflowing NoteView, the page scrolls past the html element
+  overflow-y: hidden;
   @apply bg-slate-600;
 }
 
