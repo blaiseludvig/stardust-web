@@ -7,6 +7,7 @@ export interface NoteActionButtonFrameProps {
   leftButtons?: ReactNode[];
   centerButtons?: ReactNode[];
   rightButtons?: ReactNode[];
+  wrapperClasses?: string;
 }
 
 function NoteActionButtonFrame({
@@ -14,12 +15,14 @@ function NoteActionButtonFrame({
   leftButtons,
   centerButtons,
   rightButtons,
+  wrapperClasses,
 }: NoteActionButtonFrameProps) {
   return (
     <div
       className={clsx(
         hidden && 'hidden',
-        'absolute bottom-1 left-0 flex w-full justify-between px-2'
+        wrapperClasses,
+        'flex w-full justify-between px-2'
       )}
     >
       <div className="flex basis-1/3 justify-start">

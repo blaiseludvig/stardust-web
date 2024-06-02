@@ -12,9 +12,14 @@ import NoteActionButtonFrame, {
 interface NoteActionButtonProps
   extends Pick<NoteActionButtonFrameProps, 'hidden'> {
   noteData: NoteData | null;
+  wrapperClasses?: string;
 }
 
-function NoteActionButtons({ noteData, hidden }: NoteActionButtonProps) {
+function NoteActionButtons({
+  noteData,
+  hidden,
+  wrapperClasses,
+}: NoteActionButtonProps) {
   const windowSize = useWindowSize();
 
   if (!noteData) {
@@ -30,6 +35,7 @@ function NoteActionButtons({ noteData, hidden }: NoteActionButtonProps) {
         <ArchiveButton noteData={noteData} />,
         <MenuButton noteData={noteData} />,
       ]}
+      wrapperClasses={wrapperClasses || 'absolute bottom-1 left-0'}
     />
   );
 }

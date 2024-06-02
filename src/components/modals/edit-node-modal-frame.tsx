@@ -6,7 +6,7 @@ import { useUpdateNote } from 'src/features/note-management/hooks/useUpdateNote'
 import { useEditModalCursor } from 'src/hooks/useEditModalCursor';
 import ModalFrame, { ModalFrameProps } from 'src/lib/components/modal-frame';
 
-import NoteActionButtons from '../note-action-buttons/note-action-buttons';
+import NoteEditActionButtons from '../note-action-buttons/note-edit-action-buttons';
 
 interface EditNoteModalFrameProps extends ModalFrameProps {
   originalNoteData: NoteData;
@@ -110,42 +110,44 @@ function EditNoteModalFrame(props: EditNoteModalFrameProps) {
             });
           }
         })}
-        className="relative block max-w-3xl break-words rounded-lg border border-gray-700 bg-gray-800 p-6 pb-16 shadow"
+        className="relative block max-h-[80dvh] max-w-3xl overflow-auto break-words rounded-lg border border-gray-700 bg-gray-800 shadow"
       >
-        {(() => {
-          const { ref: formTitleRef, ...rest } = register('title');
+        <div className="p-6 pb-6">
+          {(() => {
+            const { ref: formTitleRef, ...rest } = register('title');
+            return (
+              <ReactTextareaAutosize
+                ref={(node) => {
+                  titleRef.current = node;
+                  formTitleRef(node);
+                }}
+                {...rest}
+                placeholder="Title"
+                className="mb-2 w-full cursor-default resize-none border-none bg-gray-800 text-2xl font-bold tracking-tight text-white"
+              />
+            );
+          })()}
+          {(() => {
+            const { ref: formContentRef, ...rest } = register('content');
+            return (
+              <ReactTextareaAutosize
+                ref={(node) => {
+                  contentRef.current = node;
+                  formContentRef(node);
+                }}
+                {...rest}
+                minRows={4}
+                placeholder="Write your thoughts here..."
+                className="w-full resize-none border-none bg-gray-800 font-normal text-gray-400 caret-white"
+              />
+            );
+          })()}
+        </div>
 
-          return (
-            <ReactTextareaAutosize
-              ref={(node) => {
-                titleRef.current = node;
-                formTitleRef(node);
-              }}
-              {...rest}
-              placeholder="Title"
-              className="mb-2 w-full cursor-default resize-none border-none bg-gray-800 text-2xl font-bold tracking-tight text-white"
-            />
-          );
-        })()}
-
-        {(() => {
-          const { ref: formContentRef, ...rest } = register('content');
-
-          return (
-            <ReactTextareaAutosize
-              ref={(node) => {
-                contentRef.current = node;
-                formContentRef(node);
-              }}
-              {...rest}
-              minRows={4}
-              placeholder="Write your thoughts here..."
-              className="w-full resize-none border-none bg-gray-800 font-normal text-gray-400 caret-white"
-            />
-          );
-        })()}
-
-        <NoteActionButtons hidden={false} noteData={props.originalNoteData} />
+        <NoteEditActionButtons
+          hidden={false}
+          noteData={props.originalNoteData}
+        />
       </form>
     </ModalFrame>
   );

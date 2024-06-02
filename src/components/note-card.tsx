@@ -58,16 +58,24 @@ export function NoteCard(props: NoteCardProps) {
       <div className="">
         <p
           suppressContentEditableWarning={true}
-          onClick={() => {
-            setTimeout((event) => {
-              const selection = getSelection();
+          onClick={
+            windowSize.width >= 768
+              ? () => {
+                  setTimeout((event) => {
+                    const selection = getSelection();
 
-              if (selection) {
-                editModalCursor.setCursor('title', selection.anchorOffset);
-              }
-            }, 0);
-          }}
-          contentEditable="true"
+                    if (selection) {
+                      editModalCursor.setCursor(
+                        'title',
+                        selection.anchorOffset
+                      );
+                    }
+                  }, 0);
+                }
+              : // eslint-disable-next-line @typescript-eslint/no-empty-function
+                () => {}
+          }
+          contentEditable={windowSize.width >= 768 ? 'true' : 'false'}
           className="mb-2 line-clamp-[3] w-full cursor-default resize-none whitespace-pre-wrap border-none bg-transparent p-0 text-2xl font-bold tracking-tight text-white caret-transparent outline-none selection:bg-transparent"
         >
           {title}
@@ -77,16 +85,24 @@ export function NoteCard(props: NoteCardProps) {
       <div className="">
         <p
           suppressContentEditableWarning={true}
-          onMouseDown={() => {
-            setTimeout((event) => {
-              const selection = getSelection();
+          onClick={
+            windowSize.width >= 768
+              ? () => {
+                  setTimeout((event) => {
+                    const selection = getSelection();
 
-              if (selection) {
-                editModalCursor.setCursor('content', selection.anchorOffset);
-              }
-            }, 0);
-          }}
-          contentEditable="true"
+                    if (selection) {
+                      editModalCursor.setCursor(
+                        'content',
+                        selection.anchorOffset
+                      );
+                    }
+                  }, 0);
+                }
+              : // eslint-disable-next-line @typescript-eslint/no-empty-function
+                () => {}
+          }
+          contentEditable={windowSize.width >= 768 ? 'true' : 'false'}
           className="line-clamp-[8] w-full cursor-default resize-none whitespace-pre-wrap border-none bg-transparent p-0 font-normal text-gray-400 caret-transparent outline-none selection:bg-transparent"
         >
           {content}
