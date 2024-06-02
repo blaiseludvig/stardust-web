@@ -1,3 +1,4 @@
+import { AcademicCapIcon } from '@heroicons/react/24/outline';
 import { UserCircleIcon } from '@heroicons/react/24/solid';
 import { Link } from '@tanstack/react-router';
 import { useRef } from 'react';
@@ -46,6 +47,9 @@ export function Navbar(props: NavbarProps) {
           </button>
           <Link to={'/'}>
             <div className="ml-2 flex md:mr-24">
+              <span className="inline-flex items-center mr-2">
+                <AcademicCapIcon className="inline-flex h-8 w-8 text-white" />
+              </span>
               <span className="self-center whitespace-nowrap text-xl font-semibold text-white sm:text-2xl">
                 Stardust
               </span>
