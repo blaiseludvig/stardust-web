@@ -45,7 +45,7 @@ export function Navbar(props: NavbarProps) {
               ></path>
             </svg>
           </button>
-          <Link to={'/'}>
+          <Link to={'/all'}>
             <div className="ml-2 flex md:mr-24">
               <span className="inline-flex items-center mr-2">
                 <AcademicCapIcon className="inline-flex h-8 w-8 text-white" />
