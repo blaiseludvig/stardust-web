@@ -44,7 +44,9 @@ export function AppView(props: AppViewProps) {
               : 0,
           marginTop: layoutContext.navbarHeight,
         }}
-        className={'w-full overflow-y-scroll bg-slate-600 px-4 pt-4'}
+        className={
+          'w-full overflow-y-auto overflow-x-hidden bg-slate-600 px-4 pt-4'
+        }
       >
         <Outlet />
 
